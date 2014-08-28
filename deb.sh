@@ -18,190 +18,206 @@
 
 u ()
 {
-	apt-get update
+    apt-get update
 }
 
 i ()
 {
-	p=$(dpkg -l $1 | egrep ^ii | awk '{print $2}' 2&>1 >/dev/null)
-	v=$(dpkg -l $1 | egrep ^ii | awk '{print $3}' 2&>1 >/dev/null)
-	a=$(apt-cache show $1 | egrep "^Version" | awk '{print $2}' 2&>1 >/dev/null)
+    p=$(dpkg -l $1 | egrep ^ii | awk '{print $2}' 2&>1 >/dev/null)
+    v=$(dpkg -l $1 | egrep ^ii | awk '{print $3}' 2&>1 >/dev/null)
+    a=$(apt-cache show $1 | egrep "^Version" | awk '{print $2}' 2&>1 >/dev/null)
 
-	if [ "$p" = "$1" ]
-	then
-		printf "%30s\t%-20s\t%-20s\n" $1 $v $a
-	else
-		apt-get -qq -y install $1
-	fi
+    if [ "$p" = "$1" ]
+    then
+        printf "%30s\t%-20s\t%-20s\n" $1 $v $a
+    else
+        apt-get -qq -y install $1
+    fi
 }
 
 r ()
 {
-	apt-get remove $1
+    apt-get remove $1
 }
-
-#u
 
 db()
 {
-	i mariadb-client
-	i postgresql-client
-	i sqlite3
+    i mariadb-client
+    i postgresql-client
+    i sqlite3
 }
 
 lamp ()
 {
-	i apache2-mpm-prefork
-	i ca-certificates
-	i libapache2-mod-php5
-	i libcurl3
-	i mariadb-server
-	i openssl
-	i php-db
-	i php-mail
-	i php-mail-mime
-	i php-mdb2-driver-pgsql
-	i php-net-smtp
-	i php-net-socket
-	i php-net-url
-	i php-pear
-	i php-soap
-	i php5
-	i php5-curl
-	i php5-imap
-	i php5-mysql
-	i php5-pgsql
-	i php5-sqlite
+    i apache2-mpm-prefork
+    i ca-certificates
+    i libapache2-mod-php5
+    i libcurl3
+    i mariadb-server
+    i openssl
+    i php-db
+    i php-mail
+    i php-mail-mime
+    i php-mdb2-driver-pgsql
+    i php-net-smtp
+    i php-net-socket
+    i php-net-url
+    i php-pear
+    i php-soap
+    i php5
+    i php5-curl
+    i php5-imap
+    i php5-mysql
+    i php5-pgsql
+    i php5-sqlite
 }
 
 sysadmin ()
 {
-	i cron-apt
-	i etckeeper
-	i fail2ban
-	i logcheck
-	i ntpdate
-	i postfix
+    i cron-apt
+    i etckeeper
+    i fail2ban
+    i logcheck
+    i ntpdate
+    i postfix
+}
+
+printer ()
+{
+    i lpr
+    i cups
+    i foomatic-db
 }
 
 privacy ()
 {
-	i cryptsetup
-	i encfs
-	i ecryptfs-utils
-	i gnupg
-	i sudo
+    i cryptsetup
+    i encfs
+    i ecryptfs-utils
+    i gnupg
+    i sudo
 }
 
 network ()
 {
-	i atop
-	i connect-proxy
-	i corkscrew
-	i ethtool
-	i htop
-	i iftop
-	i iperf
-	i ncftp
-	i netcat
-	i netcat-traditional
-	i nload
-	i openssh-server
-	i pssh
-	i redsocks
-	i socat
-	i sshfs
-	i sshfs
-	i tcpdump
-	i tshark
-	i vnstat
+    i atop
+    i connect-proxy
+    i corkscrew
+    i ethtool
+    i htop
+    i iftop
+    i iperf
+    i ncftp
+    i netcat
+    i netcat-traditional
+    i nload
+    i openssh-server
+    i pssh
+    i redsocks
+    i socat
+    i sshfs
+    i sshfs
+    i tcpdump
+    i tshark
+    i vnstat
 }
 
 web ()
 {
-	i w3m
-	i lynx
-	i links2
-	i elinks
+    i w3m
+    i lynx
+    i links2
+    i elinks
 }
 
 down ()
 {
-	i wget
-	i axel
-	i curl
+    i wget
+    i axel
+    i curl
 }
 
 terminal ()
 {
-	i screen
-	i tmux
-	i bash-completion
+    i screen
+    i tmux
+    i bash-completion
 }
 
 tty ()
 {
-	i gpm
-	i fbi
-	i fbterm
+    i gpm
+    i fbi
+    i caca-utils
+    i fbterm
 }
 
 fonts ()
 {
-	i fonts-inconsolata
+    i fonts-inconsolata
 }
 
 editor ()
 {
-	i ed
-	i vim
-	i emacs24-nox
-    i yasnippet
+    i ack-grep
+    i ed
+    i emacs24-nox
     i gnuplot-mode
+    i vim
+    i yasnippet
+}
+
+org ()
+{
+    i remind
+    i libical-parser-perl
 }
 
 disk ()
 {
-	i ncdu
-	i mc
-	i ranger
-	i detox
-	i renameutils
+    i ncdu
+    i mc
+    i ranger
+    i detox
+    i renameutils
+    i gdisk
+    i parted
 }
 
 music ()
 {
-	i moc
+    i moc
 }
 
 code ()
 {
-	i git-core
-	i mercurial
-	i php5-cli
-	i python
-	i subversion
-	i tig
+    i git-core
+    i mercurial
+    i php5-cli
+    i python
+    i python-pip
+    i subversion
+    i tig
 }
 
 util ()
 {
-	i manpages-es
-	i most 
-	i par
-	i pv
-	i toilet
+    i manpages-es
+    i most 
+    i par
+    i pv
+    i toilet
 }
 
 mail ()
 {
-	i imapfilter
-	i mutt-patched
-	i notmuch
-	i notmuch-emacs
-	i notmuch-mutt
-	i notmuch-vim
-	i offlineimap
+    i imapfilter
+    i mutt-patched
+    i notmuch
+    i notmuch-emacs
+    i notmuch-mutt
+    i notmuch-vim
+    i offlineimap
 }
 
 chat ()
@@ -212,104 +228,119 @@ chat ()
 
 media ()
 {
-	i jhead
-	i mplayer
-	i mplayer2
+    i jhead
+    i mplayer
+    i mplayer2
+    i mkvtoolnix
 }
 
 graph ()
 {
-	i ditaa
-	i graphviz
-	i imagemagick
+    i ditaa
+    i graphviz
+    i imagemagick
     i gnuplot
 }
 
 python ()
 {
-	i python-setuptools
-	i python-docutils
-	i python-virtualenv
-	i ipython
+    i python-setuptools
+    i python-docutils
+    i python-virtualenv
+    i ipython
 }
 
 x ()
 {
-	i awesome
-	i conky
-	i libnotify-bin
-	i osdsh
-	i terminator
-	i thunar
-	i vlc
-	i wireshark
-	i x11-utils
-	i zathura
+    i awesome
+    i conky
+    i libnotify-bin
     i lxappearance
     i lxrandr
+    i osdsh
+    i shutter
+    i terminator
+    i thunar
+    i vlc
     i vncviewer
+    i wireshark
+    i x11-utils
+    i xdot
     i xfonts-efont-unicode
     i xscreensaver
+    i zathura
 }
 
 x-web ()
 {
-	i dillo
-	i iceweasel
-	i iceweasel-l10n-es-ar
-	i midori
-	i uzbl
+    i dillo
+    i iceweasel
+    i iceweasel-l10n-es-ar
+    i midori
+    i uzbl
 }
 
 x-code ()
 {
-	i gitg
-	i gitk
-	i meld
-	i sqlitebrowser
+    i gitg
+    i gitk
+    i meld
+    i sqlitebrowser
     i pidgin
 }
 
 x-office ()
 {
-	i libreoffice
+    i libreoffice
+}
+
+x-graph ()
+{
+    i geeqie
+    i pqiv
+    i qiv
+    i inkscape
+    i gimp
 }
 
 remove()
 {
-	r nano
+    r nano
 }
 
 only-tty ()
 {
     chat
-	code
-	disk
-	down
-	editor
-	fonts
-	graph
-	lamp
-	mail
-	media
-	music
-	network
-	privacy
-	python
-	remove
-	sysadmin
-	terminal
-	tty
-	util
-	web
+    code
+    disk
+    down
+    editor
+    fonts
+    graph
+    lamp
+    mail
+    media
+    music
+    network
+    org
+    printer
+    privacy
+    python
+    remove
+    sysadmin
+    terminal
+    tty
+    util
+    web
 }
 
 with-x ()
 {
-	x
-	x-code
-	x-office
-	x-web
+    x
+    x-code
+    x-office
+    x-web
+    x-graph
 }
 
 while getopts "utxds" OPTION
