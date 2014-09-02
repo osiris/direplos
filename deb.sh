@@ -23,14 +23,15 @@ u ()
 
 i ()
 {
-    p=$(dpkg -l $1 | egrep ^ii | awk '{print $2}' 2&>1 >/dev/null)
-    v=$(dpkg -l $1 | egrep ^ii | awk '{print $3}' 2&>1 >/dev/null)
-    a=$(apt-cache show $1 | egrep "^Version" | awk '{print $2}' 2&>1 >/dev/null)
+    p=$(dpkg -l $1 | egrep ^ii | awk '{print $2}')
+    v=$(dpkg -l $1 | egrep ^ii | awk '{print $3}')
+    a=$(apt-cache show $1 | egrep "^Version" | awk '{print $2}')
 
     if [ "$p" = "$1" ]
     then
         printf "%30s\t%-20s\t%-20s\n" $1 $v $a
     else
+        echo $1 ...
         apt-get -qq -y install $1
     fi
 }
@@ -38,6 +39,26 @@ i ()
 r ()
 {
     apt-get remove $1
+}
+
+dev()
+{
+    i build-essential
+    i byacc
+    i cmake
+    i ctags
+    i flex
+    i gcc
+    i gengetopt
+    i libgmp3-dev
+    i libpcap-dev
+}
+
+firm()
+{
+    i firmware-atheros
+    i firmware-linux-free
+    i zd1211-firmware
 }
 
 db()
@@ -120,6 +141,7 @@ network ()
     i tcpdump
     i tshark
     i vnstat
+    i wicd-curses
 }
 
 web ()
@@ -267,6 +289,7 @@ x ()
     i x11-utils
     i xdot
     i xfonts-efont-unicode
+    i xinit
     i xscreensaver
     i zathura
 }
@@ -343,23 +366,33 @@ with-x ()
     x-graph
 }
 
-while getopts "utxds" OPTION
+while getopts "adfstuvx" OPTION
     do
         case $OPTION in
-            u)
-                u
-                ;;
-            t)
+            a)
                 only-tty
-                ;;
-            x)
                 with-x
+                ;;
+            d)
+                db
+                ;;
+            f)
+                firm
                 ;;
             s)
                 lamp
                 ;;
-            d)
-                db
+            t)
+                only-tty
+                ;;
+            u)
+                u
+                ;;
+            v)
+                dev
+                ;;
+            x)
+                with-x
                 ;;
             *)
                 exit
