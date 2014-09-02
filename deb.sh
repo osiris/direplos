@@ -197,13 +197,18 @@ org ()
 
 disk ()
 {
-    i ncdu
-    i mc
-    i ranger
     i detox
-    i renameutils
+    i fdupes
+    i gddrescue
     i gdisk
+    i gpart
+    i mc
+    i ncdu
     i parted
+    i ranger
+    i renameutils
+    i sfdisk
+    i testdisk
 }
 
 music ()
