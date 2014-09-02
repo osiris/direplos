@@ -21,10 +21,16 @@ mkdir -p /mnt/data/cifrado
 
 if [ -d /mnt/data/ecryptfs ]
 then
+
   if [ -d /mnt/data/cifrado ]
   then
 
   mount -t ecryptfs /mnt/data/ecryptfs/ /mnt/data/cifrado/
+
+  ln -f -s /mnt/data/cifrado/.ssh ~/.ssh
+  ln -f -s /mnt/data/cifrado/.gnupg ~/.gnupg
+  ln -f -s /mnt/data/cifrado/.imapfilter ~/.imapfilter
+  ln -f -s /mnt/data/cifrado/org ~/org
 
   fi
 fi
