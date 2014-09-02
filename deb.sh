@@ -25,11 +25,11 @@ i ()
 {
     p=$(dpkg -l $1 | egrep ^ii | awk '{print $2}')
     v=$(dpkg -l $1 | egrep ^ii | awk '{print $3}')
-    a=$(apt-cache show $1 | egrep "^Version" | awk '{print $2}')
+    a=$(apt-cache show $1 | egrep "^Version" | head -1 | awk '{print $2}')
 
     if [ "$p" = "$1" ]
     then
-        printf "%30s\t%-20s\t%-20s\n" $1 $v $a
+        printf "%25s\t%-25s\t%-25s\n" $1 $v $a
     else
         echo $1 ...
         apt-get -qq -y install $1
@@ -41,7 +41,7 @@ r ()
     apt-get remove $1
 }
 
-dev()
+dev ()
 {
     i build-essential
     i byacc
@@ -54,14 +54,14 @@ dev()
     i libpcap-dev
 }
 
-firm()
+firm ()
 {
     i firmware-atheros
     i firmware-linux-free
     i zd1211-firmware
 }
 
-db()
+db ()
 {
     i mariadb-client
     i postgresql-client
@@ -146,32 +146,33 @@ network ()
 
 web ()
 {
-    i w3m
-    i lynx
-    i links2
     i elinks
+    i links2
+    i lynx
+    i w3m
 }
 
 down ()
 {
-    i wget
     i axel
     i curl
+    i wget
 }
 
 terminal ()
 {
+    i bash-completion
     i screen
     i tmux
-    i bash-completion
+    i vlock
 }
 
 tty ()
 {
-    i gpm
-    i fbi
     i caca-utils
+    i fbi
     i fbterm
+    i gpm
 }
 
 fonts ()
@@ -207,7 +208,6 @@ disk ()
     i parted
     i ranger
     i renameutils
-    i sfdisk
     i testdisk
 }
 
