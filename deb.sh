@@ -16,6 +16,10 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+apt=$(grep ^deb /etc/apt/sources.list | head -1)
+debian_version=$(echo $apt | awk '{print $3}' | cut -d/ -f1)
+echo $debian_version
+
 u ()
 {
     apt-get update
@@ -23,17 +27,33 @@ u ()
 
 i ()
 {
-    p=$(dpkg -l $1 | egrep ^ii | awk '{print $2}')
-    v=$(dpkg -l $1 | egrep ^ii | awk '{print $3}')
-    a=$(apt-cache show $1 | egrep "^Version" | head -1 | awk '{print $2}')
+  p=$(dpkg -l $1 | egrep ^ii | awk '{print $2}')
+  v=$(dpkg -l $1 | egrep ^ii | awk '{print $3}')
+  a=$(apt-cache show $1 | egrep "^Version" | head -1 | awk '{print $2}')
 
-    if [ "$p" = "$1" ]
-    then
-        printf "%25s\t%-25s\t%-25s\n" $1 $v $a
-    else
-        echo $1 ...
-        apt-get -qq -y install $1
-    fi
+  if [ "$p" = "$1" ]
+  then
+    printf "%25s\t%-25s\t%-25s\n" $1 $v $a
+  else
+    case $1 in
+      emacs)
+        case $debian_version in
+          jessie)
+            version=emacs24-nox
+            ;;
+          *)
+            version=emacs23-nox
+            ;;
+        esac
+        ;;
+      *)
+        version=$1
+        ;;
+    esac
+
+    echo $version ...
+    apt-get -qq -y install $version
+  fi
 }
 
 r ()
@@ -58,6 +78,7 @@ firm ()
 {
     i firmware-atheros
     i firmware-linux-free
+    i firmware-realtek
     i zd1211-firmware
 }
 
@@ -66,6 +87,12 @@ db ()
     i mariadb-client
     i postgresql-client
     i sqlite3
+}
+
+laptop ()
+{
+    i laptop-mode-tools
+    i powertool
 }
 
 lamp ()
@@ -113,10 +140,14 @@ printer ()
 privacy ()
 {
     i cryptsetup
-    i encfs
     i ecryptfs-utils
+    i encfs
     i gnupg
+    i keychain
+    i monkeysphere
+    i secure-delete
     i sudo
+    i wipe
 }
 
 network ()
@@ -141,6 +172,7 @@ network ()
     i tcpdump
     i tshark
     i vnstat
+    i wavemon
     i wicd-curses
 }
 
@@ -150,6 +182,7 @@ web ()
     i links2
     i lynx
     i w3m
+    i w3m-img
 }
 
 down ()
@@ -169,6 +202,7 @@ terminal ()
 
 tty ()
 {
+    i aview
     i caca-utils
     i fbi
     i fbterm
@@ -180,14 +214,20 @@ fonts ()
     i fonts-inconsolata
 }
 
+emacs ()
+{
+    i emacs
+    i gnuplot-mode
+    i vim
+    i w3m-el
+    i yasnippet
+}
+
 editor ()
 {
     i ack-grep
     i ed
-    i emacs24-nox
-    i gnuplot-mode
-    i vim
-    i yasnippet
+    emacs
 }
 
 org ()
@@ -230,7 +270,7 @@ code ()
 util ()
 {
     i manpages-es
-    i most 
+    i most
     i par
     i pv
     i toilet
@@ -280,11 +320,13 @@ python ()
 x ()
 {
     i awesome
+    i bleachbit
     i conky
     i libnotify-bin
     i lxappearance
     i lxrandr
     i osdsh
+    i rdesktop
     i shutter
     i terminator
     i thunar
@@ -292,9 +334,12 @@ x ()
     i vncviewer
     i wireshark
     i x11-utils
+    i xcalib
     i xdot
     i xfonts-efont-unicode
     i xinit
+    i rxvt-unicode
+    i rxvt-unicode-256color
     i xscreensaver
     i zathura
 }
@@ -346,6 +391,7 @@ only-tty ()
     fonts
     graph
     lamp
+    laptop
     mail
     media
     music
@@ -371,7 +417,7 @@ with-x ()
     x-graph
 }
 
-while getopts "adfstuvx" OPTION
+while getopts "adefpstuvx" OPTION
     do
         case $OPTION in
             a)
@@ -381,8 +427,14 @@ while getopts "adfstuvx" OPTION
             d)
                 db
                 ;;
+            e)
+                emacs
+                ;;
             f)
                 firm
+                ;;
+            p)
+                privacy
                 ;;
             s)
                 lamp
