@@ -327,6 +327,9 @@ x ()
     i lxrandr
     i osdsh
     i rdesktop
+    i rxvt-unicode
+    i rxvt-unicode-256color
+    i scrot
     i shutter
     i terminator
     i thunar
@@ -338,8 +341,6 @@ x ()
     i xdot
     i xfonts-efont-unicode
     i xinit
-    i rxvt-unicode
-    i rxvt-unicode-256color
     i xscreensaver
     i zathura
 }

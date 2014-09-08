@@ -42,5 +42,6 @@ c https://github.com/zmap/zmap
 
 mkdir -p ~/data/dev/emacs-lisp
 cd ~/data/dev/emacs-lisp
-c git://orgmode.org/org-mode.git && cd org-mode && make && sudo make install
+c git://orgmode.org/org-mode.git && cd org-mode && make && sudo make install && cd ..
+c https://github.com/ejmr/php-mode
 
