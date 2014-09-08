@@ -145,6 +145,7 @@ privacy ()
     i gnupg
     i keychain
     i monkeysphere
+    i pass
     i secure-delete
     i sudo
     i wipe
