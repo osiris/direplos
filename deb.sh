@@ -20,6 +20,14 @@ apt=$(grep ^deb /etc/apt/sources.list | head -1)
 debian_version=$(echo $apt | awk '{print $3}' | cut -d/ -f1)
 echo $debian_version
 
+declare -A v_emacs
+v_emacs[squeeze]='emacs23-nox'
+v_emacs[wheezy]='emacs23-nox'
+v_emacs[jessie]='emacs24-nox'
+v_emacs[sid]='emacs24-nox'
+v_emacs[precise]='emacs23-nox'
+v_emacs[trusty]='emacs24-nox'
+
 u ()
 {
     apt-get update
@@ -37,17 +45,7 @@ i ()
   else
     case $1 in
       emacs)
-        case $debian_version in
-          jessie)
-            version=emacs24-nox
-            ;;
-          *)
-            version=emacs23-nox
-            ;;
-        esac
-        ;;
-      *)
-        version=$1
+        version=${v_emacs[$debian_version]}
         ;;
     esac
 
