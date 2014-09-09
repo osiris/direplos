@@ -30,6 +30,7 @@ then
   ln -f -s /mnt/data/cifrado/.ssh ~/.ssh
   ln -f -s /mnt/data/cifrado/.gnupg ~/.gnupg
   ln -f -s /mnt/data/cifrado/.imapfilter ~/.imapfilter
+  ln -f -s /mnt/data/cifrado/.password-store ~/.password-store
   ln -f -s /mnt/data/cifrado/org ~/org
 
   fi
