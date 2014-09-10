@@ -47,6 +47,8 @@ i ()
       emacs)
         version=${v_emacs[$debian_version]}
         ;;
+      *)
+        version=$1
     esac
 
     echo $version ...
@@ -310,10 +312,11 @@ graph ()
 
 python ()
 {
-    i python-setuptools
-    i python-docutils
-    i python-virtualenv
     i ipython
+    i python-docutils
+    i python-setuptools
+    i python-virtualenv
+    i rst2pdf
 }
 
 x ()
