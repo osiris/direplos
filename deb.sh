@@ -315,6 +315,7 @@ python ()
     i ipython
     i python-docutils
     i python-setuptools
+    i python-sphinx
     i python-virtualenv
     i rst2pdf
 }
