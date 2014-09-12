@@ -92,7 +92,7 @@ db ()
 laptop ()
 {
     i laptop-mode-tools
-    i powertool
+    i powertop
 }
 
 lamp ()
