@@ -19,7 +19,6 @@
 i ()
 {
   pear install doc.php.net/pman
-  pip install xdebugtoolkit
 }
 
 u ()
@@ -28,17 +27,17 @@ u ()
 }
 
 while getopts "ui" OPTION
-    do
-        case $OPTION in
-            u)
-                u
-                ;;
-            i)
-                i
-                ;;
-            *)
-                exit
-                ;;
-        esac
-    done
+do
+  case $OPTION in
+    u)
+      u
+      ;;
+    i)
+      i
+      ;;
+    *)
+      exit
+      ;;
+  esac
+done
 
