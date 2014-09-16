@@ -412,13 +412,19 @@ only-tty ()
     web
 }
 
+x-games ()
+{
+    golly
+}
+
 with-x ()
 {
     x
     x-code
+    x-games
+    x-graph
     x-office
     x-web
-    x-graph
 }
 
 while getopts "adefpstuvx" OPTION
