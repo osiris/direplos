@@ -29,16 +29,20 @@ cd ~/data
 c osiris@malbec:~/git/config.git && cd config && make && cd ..
 c osiris@malbec:~/git/org.git && ln -s ~/data/org ~/org
 c osiris@malbec:~/git/osiux-bin.git bin
+
+c git@github.com:gcoop-libre/codigos-cooperativos
+
+c git@github.com:osiris/media-bash-utils
+c git@github.com:osiris/org-bash-utils
 c git@github.com:osiris/osiris.github.com hmtl && ln -s ~/data/html
 c git@github.com:osiris/osiux-blog blog && ln -s ~/data/blog
-c git@github.com:osiris/org-bash-utils
-c git@github.com:osiris/media-bash-utils
-c git@github.com:gcoop-libre/codigos-cooperativos
+c git@github.com:osiris/sugar-graphviz
 
 mkdir -p ~/data/dev
 cd ~/data/dev
 c https://github.com/robertdavidgraham/masscan
 c https://github.com/zmap/zmap
+c https://github.com/aschn/gnuplot-colorbrewer.git
 
 mkdir -p ~/data/dev/emacs-lisp
 cd ~/data/dev/emacs-lisp
