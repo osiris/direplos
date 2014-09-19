@@ -170,6 +170,7 @@ network ()
     i socat
     i sshfs
     i sshfs
+    i telnet
     i tcpdump
     i tshark
     i vnstat
@@ -213,6 +214,7 @@ tty ()
 fonts ()
 {
     i fonts-inconsolata
+    i unifont
 }
 
 emacs ()
