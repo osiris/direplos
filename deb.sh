@@ -207,6 +207,7 @@ tty ()
 {
     i aview
     i caca-utils
+    i fbcat
     i fbi
     i fbterm
     i gpm
