@@ -143,6 +143,7 @@ privacy ()
     i ecryptfs-utils
     i encfs
     i gnupg
+    i gnupg-agent
     i keychain
     i monkeysphere
     i pass
