@@ -197,7 +197,9 @@ down ()
 
 terminal ()
 {
+    i bash
     i bash-completion
+    i bash-doc
     i screen
     i tmux
     i vlock
