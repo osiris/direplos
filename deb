@@ -227,7 +227,9 @@ emacs ()
     i gnuplot-mode
     i vim
     i w3m-el
+    i yaml-mode
     i yasnippet
+    i emacs-goodies-el
 }
 
 editor ()
