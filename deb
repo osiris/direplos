@@ -152,19 +152,43 @@ privacy ()
     i wipe
 }
 
+monitor ()
+{
+    i arpwatch
+    i atop
+    i bmon
+    i bwm-ng
+    i cbm
+    i collectl
+    i dstat
+    i fwlogwatch
+    i htop
+    i ifstat
+    i iftop
+    i iperf
+    i iptraf
+    i iwatch
+    i netdiag
+    i nethogs
+    i nfswatch
+    i nload
+    i pktstat
+    i slurm
+    i speedometer
+    i tcptrack
+    i vnstat
+    i wavemon
+    i whowatch
+}
+
 network ()
 {
-    i atop
     i connect-proxy
     i corkscrew
     i ethtool
-    i htop
-    i iftop
-    i iperf
     i ncftp
     i netcat
     i netcat-traditional
-    i nload
     i openssh-server
     i pssh
     i redsocks
@@ -174,8 +198,6 @@ network ()
     i telnet
     i tcpdump
     i tshark
-    i vnstat
-    i wavemon
     i wicd-curses
 }
 
@@ -435,7 +457,7 @@ with-x ()
     x-web
 }
 
-while getopts "adefpstuvx" OPTION
+while getopts "adefmpstuvx" OPTION
     do
         case $OPTION in
             a)
@@ -450,6 +472,9 @@ while getopts "adefpstuvx" OPTION
                 ;;
             f)
                 firm
+                ;;
+            m)
+                monitor
                 ;;
             p)
                 privacy
