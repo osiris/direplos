@@ -132,9 +132,10 @@ sysadmin ()
 
 printer ()
 {
-    i lpr
     i cups
     i foomatic-db
+    i lpr
+    i paps
 }
 
 privacy ()
@@ -195,9 +196,12 @@ network ()
     i socat
     i sshfs
     i sshfs
-    i telnet
     i tcpdump
+    i tcpslice
+    i tcpxtract
+    i telnet
     i tshark
+    i vncsnapshot
     i wicd-curses
 }
 
@@ -289,6 +293,7 @@ music ()
 
 code ()
 {
+    i bzr
     i git-core
     i mercurial
     i php5-cli
