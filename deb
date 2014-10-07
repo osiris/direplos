@@ -190,6 +190,7 @@ network ()
     i ncftp
     i netcat
     i netcat-traditional
+    i ngrep
     i openssh-server
     i pssh
     i redsocks
