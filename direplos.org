@@ -1,0 +1,18 @@
+#+TITLE:     direplos - DIsaster REcovery PLan OSiux
+#+AUTHOR:    Osiris Alejandro Gómez
+#+EMAIL:     osiux@osiux.com
+#+LANGUAGE:  en
+#+LINK:      ISSUE https://github.com/osiris/direplos/issues/
+#+LINK:      GIT https://github.com/osiris/direplos/commit/
+
+
+
+** Releases
+*** Release 0.1 [1/1]
+**** DONE refactor and publish mysql-bak
+     CLOSED: [2014-10-08 mié 09:43]
+     :LOGBOOK:
+     - State "DONE"       from ""           [2014-10-08 mié 09:43]
+     CLOCK: [2014-10-08 mié 08:58]--[2014-10-08 mié 09:43] =>  0:45
+     :END:
+

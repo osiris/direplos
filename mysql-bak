@@ -1,0 +1,159 @@
+#!/bin/bash
+
+# This script comes with ABSOLUTELY NO WARRANTY, use at own risk
+# Copyright (C) 2014 Osiris Alejandro Gomez <osiux@osiux.com.ar>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+create_user ()
+{
+cat << EOF
+ CREATE USER backuprsync;
+ SET GRANT
+ FILE,
+ LOCK TABLES,
+ PROCESS,
+ RELOAD,
+ SELECT,
+ SHOW VIEW
+ SUPER,
+ ON *.*
+ TO 'backuprsync'@'localhost';
+ SET PASSWORD FOR 'backuprsync'@'localhost'=PASSWORD('12345678');
+ FLUSH PRIVILEGES;
+EOF
+}
+
+my_cnf ()
+{
+
+# chmod 400 /home/backuprsync/.my.cnf
+
+cat << EOF
+
+[mysqldump]
+user=backuprsync
+password=12345678
+
+[client]
+user=backuprsync
+password=12345678
+
+EOF
+
+}
+
+crontab ()
+{
+
+cat << EOF
+0   * *     * * /bin/bash /bak/sql/mysql-bak weekday
+0   2 */7   * * /bin/bash /bak/sql/mysql-bak month
+0   3 */7   * * /bin/bash /bak/sql/mysql-bak now
+50 23 28-31 * * /bin/bash /bak/sql/mysql-bak last
+EOF
+
+}
+
+LOG='/bak/sql/backup.log'
+ERR='/bak/sql/error.log'
+DIR='/bak/sql'
+
+MYSQL='/usr/bin/mysql'
+DUMP='/usr/bin/mysqldump'
+GZIP='/bin/gzip'
+MD5='/usr/bin/md5sum'
+
+USER=backuprsync
+
+OPTIONS=$(cat << EOF
+ --add-drop-database
+ --add-drop-table
+ --create-options
+ --default-character-set=utf8
+ --extended-insert
+ --single-transaction
+ --skip-events
+ -h localhost
+EOF
+)
+
+last_day ()
+{
+  if [ $(/bin/date -d +1day +%d) -eq 1 ]
+  then
+      /bin/bash /bak/sql/mysql-bak month
+  fi
+}
+
+WEEKDAY=$(/bin/date +%A)
+NOW=$(/bin/date +%F_%H-%M)
+MONTH=$(/bin/date +%B)
+
+case $1 in
+  my_cnf)
+    my_cnf
+    exit
+    ;;
+  create_user)
+    create_user
+    exit
+    ;;
+  crontab)
+    crontab
+    exit
+    ;;
+  now)
+    NAME=$NOW
+    ;;
+  weekday)
+    NAME=$WEEKDAY
+    ;;
+  month)
+    NAME=$MONTH
+    ;;
+  last)
+    last_day
+    exit
+    ;;
+  *)
+    echo 1 $NOW 'ERROR now, weekday, month' >>$LOG
+    exit 1
+    ;;
+esac
+
+if [ -d $DIR ]
+then
+  mkdir -p $DIR
+fi
+
+cd $DIR
+
+DATABASES=$(echo "SHOW DATABASES;" | $MYSQL --batch -u $USER -N)
+echo $? $NOW $DATABASES >>$LOG
+
+if [ -z "$DATABASES" ]
+then
+	echo 1 $NOW "ERROR NO DATABASES!" >>$LOG
+    exit 1
+fi
+
+for DB in $DATABASES
+do
+	FILE=$DB-$NAME.sql.gz
+	echo 0 $NOW 'Start backup '$DB' -> '$FILE >>$LOG
+	$DUMP -u $USER $OPTIONS $DB | $GZIP -9 -c >$FILE 2>>$ERR
+	echo $? $NOW $($MD5 $FILE)>>$LOG
+done
+
