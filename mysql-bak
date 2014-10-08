@@ -20,14 +20,14 @@ create_user ()
 {
 cat << EOF
  CREATE USER backuprsync;
- SET GRANT
+ GRANT
  FILE,
  LOCK TABLES,
  PROCESS,
  RELOAD,
  SELECT,
- SHOW VIEW
- SUPER,
+ SHOW VIEW,
+ SUPER
  ON *.*
  TO 'backuprsync'@'localhost';
  SET PASSWORD FOR 'backuprsync'@'localhost'=PASSWORD('12345678');
