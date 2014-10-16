@@ -150,6 +150,8 @@ privacy ()
     i pass
     i secure-delete
     i sudo
+    i tor
+    i tor-socks
     i wipe
 }
 
