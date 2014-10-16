@@ -58,453 +58,476 @@ i ()
 
 r ()
 {
-    apt-get remove $1
+  apt-get remove $1
 }
 
 dev ()
 {
-    i build-essential
-    i byacc
-    i cmake
-    i ctags
-    i flex
-    i gcc
-    i gengetopt
-    i libgmp3-dev
-    i libpcap-dev
+  i build-essential
+  i byacc
+  i cmake
+  i ctags
+  i flex
+  i gcc
+  i gengetopt
+  i libgmp3-dev
+  i libpcap-dev
 }
 
 firm ()
 {
-    i firmware-atheros
-    i firmware-linux-free
-    i firmware-realtek
-    i zd1211-firmware
+  i firmware-atheros
+  i firmware-linux-free
+  i firmware-realtek
+  i zd1211-firmware
 }
 
 db ()
 {
-    i mariadb-client
-    i postgresql-client
-    i sqlite3
+  i mariadb-client
+  i postgresql-client
+  i sqlite3
 }
 
 laptop ()
 {
-    i laptop-mode-tools
-    i powertop
+  i laptop-mode-tools
+  i powertop
 }
 
 lamp ()
 {
-    i apache2-mpm-prefork
-    i ca-certificates
-    i libapache2-mod-php5
-    i libcurl3
-    i mariadb-server
-    i openssl
-    i php-db
-    i php-mail
-    i php-mail-mime
-    i php-mdb2-driver-pgsql
-    i php-net-smtp
-    i php-net-socket
-    i php-net-url
-    i php-pear
-    i php-soap
-    i php5
-    i php5-curl
-    i php5-imap
-    i php5-mysql
-    i php5-pgsql
-    i php5-sqlite
+  i apache2-mpm-prefork
+  i ca-certificates
+  i libapache2-mod-php5
+  i libcurl3
+  i mariadb-server
+  i openssl
+  i php-db
+  i php-mail
+  i php-mail-mime
+  i php-mdb2-driver-pgsql
+  i php-net-smtp
+  i php-net-socket
+  i php-net-url
+  i php-pear
+  i php-soap
+  i php5
+  i php5-curl
+  i php5-imap
+  i php5-mysql
+  i php5-pgsql
+  i php5-sqlite
 }
 
 sysadmin ()
 {
-    i cron-apt
-    i etckeeper
-    i fail2ban
-    i logcheck
-    i ntpdate
-    i postfix
+  i cron-apt
+  i etckeeper
+  i fail2ban
+  i logcheck
+  i ntpdate
+  i postfix
 }
 
 printer ()
 {
-    i cups
-    i foomatic-db
-    i lpr
-    i paps
+  i cups
+  i foomatic-db
+  i lpr
+  i paps
 }
 
 privacy ()
 {
-    i cryptsetup
-    i ecryptfs-utils
-    i encfs
-    i gnupg
-    i gnupg-agent
-    i keychain
-    i monkeysphere
-    i pass
-    i secure-delete
-    i sudo
-    i tor
-    i tor-socks
-    i wipe
+  i cryptsetup
+  i ecryptfs-utils
+  i encfs
+  i gnupg
+  i gnupg-agent
+  i keychain
+  i monkeysphere
+  i pass
+  i secure-delete
+  i sudo
+  i tor
+  i tor-socks
+  i wipe
 }
 
 monitor ()
 {
-    i arpwatch
-    i atop
-    i bmon
-    i bwm-ng
-    i cbm
-    i collectl
-    i dstat
-    i fwlogwatch
-    i htop
-    i ifstat
-    i iftop
-    i iperf
-    i iptraf
-    i iwatch
-    i netdiag
-    i nethogs
-    i nfswatch
-    i nload
-    i pktstat
-    i slurm
-    i speedometer
-    i tcptrack
-    i vnstat
-    i wavemon
-    i whowatch
+  i arpwatch
+  i atop
+  i bmon
+  i bwm-ng
+  i cbm
+  i collectl
+  i dstat
+  i fwlogwatch
+  i htop
+  i ifstat
+  i iftop
+  i iperf
+  i iptraf
+  i iwatch
+  i netdiag
+  i nethogs
+  i nfswatch
+  i nload
+  i pktstat
+  i slurm
+  i speedometer
+  i tcptrack
+  i vnstat
+  i wavemon
+  i whowatch
 }
 
 network ()
 {
-    i connect-proxy
-    i corkscrew
-    i ethtool
-    i ncftp
-    i netcat
-    i netcat-traditional
-    i ngrep
-    i openssh-server
-    i pssh
-    i redsocks
-    i socat
-    i sshfs
-    i sshfs
-    i tcpdump
-    i tcpslice
-    i tcpxtract
-    i telnet
-    i tshark
-    i vncsnapshot
-    i wicd-curses
+  i connect-proxy
+  i corkscrew
+  i dnsutils
+  i ethtool
+  i ncftp
+  i netcat
+  i netcat-traditional
+  i ngrep
+  i openssh-server
+  i pssh
+  i redsocks
+  i socat
+  i sshfs
+  i sshfs
+  i tcpdump
+  i tcpslice
+  i tcpxtract
+  i telnet
+  i tshark
+  i vncsnapshot
+  i wicd-curses
 }
 
 web ()
 {
-    i elinks
-    i links2
-    i lynx
-    i w3m
-    i w3m-img
+  i elinks
+  i links2
+  i lynx
+  i w3m
+  i w3m-img
 }
 
 down ()
 {
-    i axel
-    i curl
-    i wget
+  i axel
+  i curl
+  i wget
 }
 
 terminal ()
 {
-    i bash
-    i bash-completion
-    i bash-doc
-    i screen
-    i tmux
-    i vlock
+  i bash
+  i bash-completion
+  i bash-doc
+  i screen
+  i tmux
+  i vlock
 }
 
 tty ()
 {
-    i aview
-    i caca-utils
-    i fbcat
-    i fbi
-    i fbterm
-    i gpm
+  i aview
+  i caca-utils
+  i fbcat
+  i fbi
+  i fbterm
+  i gpm
 }
 
 fonts ()
 {
-    i fonts-inconsolata
-    i unifont
+  i fonts-inconsolata
+  i unifont
 }
 
 emacs ()
 {
-    i emacs
-    i gnuplot-mode
-    i vim
-    i w3m-el
-    i yaml-mode
-    i yasnippet
-    i emacs-goodies-el
+  i emacs
+  i gnuplot-mode
+  i vim
+  i w3m-el
+  i yaml-mode
+  i yasnippet
+  i emacs-goodies-el
 }
 
 editor ()
 {
-    i ack-grep
-    i ed
-    emacs
+  i ack-grep
+  i ed
+  emacs
 }
 
 org ()
 {
-    i remind
-    i libical-parser-perl
+  i remind
+  i libical-parser-perl
 }
 
 disk ()
 {
-    i detox
-    i fdupes
-    i gddrescue
-    i gdisk
-    i gpart
-    i mc
-    i ncdu
-    i parted
-    i ranger
-    i renameutils
-    i testdisk
+  i detox
+  i fdupes
+  i gddrescue
+  i gdisk
+  i gpart
+  i mc
+  i ncdu
+  i parted
+  i ranger
+  i renameutils
+  i testdisk
 }
 
 music ()
 {
-    i moc
+  i moc
 }
 
 code ()
 {
-    i bzr
-    i git-core
-    i mercurial
-    i php5-cli
-    i python
-    i python-pip
-    i subversion
-    i tig
+  i bzr
+  i git-core
+  i mercurial
+  i php5-cli
+  i python
+  i python-pip
+  i subversion
+  i tig
 }
 
 util ()
 {
-    i manpages-es
-    i most
-    i par
-    i pv
-    i toilet
+  i manpages-es
+  i most
+  i par
+  i pv
+  i toilet
 }
 
 mail ()
 {
-    i imapfilter
-    i mutt-patched
-    i notmuch
-    i notmuch-emacs
-    i notmuch-mutt
-    i notmuch-vim
-    i offlineimap
+  i imapfilter
+  i mutt-patched
+  i notmuch
+  i notmuch-emacs
+  i notmuch-mutt
+  i notmuch-vim
+  i offlineimap
 }
 
 chat ()
 {
-    i finch
-    i irssi
+  i finch
+  i irssi
 }
 
 media ()
 {
-    i jhead
-    i mplayer
-    i mplayer2
-    i mkvtoolnix
+  i jhead
+  i mplayer
+  i mplayer2
+  i mkvtoolnix
 }
 
 graph ()
 {
-    i ditaa
-    i graphviz
-    i imagemagick
-    i gnuplot
+  i ditaa
+  i graphviz
+  i imagemagick
+  i gnuplot
 }
 
 python ()
 {
-    i ipython
-    i python-docutils
-    i python-setuptools
-    i python-sphinx
-    i python-virtualenv
-    i rst2pdf
+  i ipython
+  i python-docutils
+  i python-setuptools
+  i python-sphinx
+  i python-virtualenv
+  i rst2pdf
 }
 
 x ()
 {
-    i awesome
-    i bleachbit
-    i conky
-    i libnotify-bin
-    i lxappearance
-    i lxrandr
-    i osdsh
-    i rdesktop
-    i rxvt-unicode
-    i rxvt-unicode-256color
-    i scrot
-    i shutter
-    i terminator
-    i thunar
-    i vlc
-    i vncviewer
-    i wireshark
-    i x11-utils
-    i xcalib
-    i xdot
-    i xfonts-efont-unicode
-    i xinit
-    i xscreensaver
-    i zathura
+  i awesome
+  i bleachbit
+  i conky
+  i libnotify-bin
+  i lxappearance
+  i lxrandr
+  i osdsh
+  i rdesktop
+  i rxvt-unicode
+  i rxvt-unicode-256color
+  i scrot
+  i shutter
+  i terminator
+  i thunar
+  i vlc
+  i vncviewer
+  i wireshark
+  i x11-utils
+  i xcalib
+  i xdot
+  i xfonts-efont-unicode
+  i xinit
+  i xscreensaver
+  i zathura
+}
+
+x-mail ()
+{
+  i icedove
+  i icedove-l10n-es-ar
 }
 
 x-web ()
 {
-    i dillo
-    i iceweasel
-    i iceweasel-l10n-es-ar
-    i midori
-    i uzbl
+  i dillo
+  i iceweasel
+  i iceweasel-l10n-es-ar
+  i midori
+  i uzbl
 }
 
 x-code ()
 {
-    i gitg
-    i gitk
-    i meld
-    i sqlitebrowser
-    i pidgin
+  i gitg
+  i gitk
+  i meld
+  i sqlitebrowser
+  i pidgin
 }
 
 x-office ()
 {
-    i libreoffice
+  i libreoffice
+  i libreoffice-l10n-es 
 }
 
 x-graph ()
 {
-    i geeqie
-    i pqiv
-    i qiv
-    i inkscape
-    i gimp
+  i geeqie
+  i pqiv
+  i qiv
+  i inkscape
+  i gimp
 }
 
 remove()
 {
-    r nano
+  r nano
 }
 
 only-tty ()
 {
-    chat
-    code
-    disk
-    down
-    editor
-    fonts
-    graph
-    lamp
-    laptop
-    mail
-    media
-    music
-    network
-    org
-    printer
-    privacy
-    python
-    remove
-    sysadmin
-    terminal
-    tty
-    util
-    web
+  chat
+  code
+  disk
+  down
+  editor
+  fonts
+  graph
+  lamp
+  laptop
+  mail
+  media
+  music
+  network
+  org
+  printer
+  privacy
+  python
+  remove
+  sysadmin
+  terminal
+  tty
+  util
+  web
 }
 
 x-games ()
 {
-    golly
+  golly
+}
+
+x-scan ()
+{
+  i xsane
+  i simple-scan
+}
+
+x-web ()
+{
+  i iceweasel
+  i iceweasel-l10n-es-ar
 }
 
 with-x ()
 {
-    x
-    x-code
-    x-games
-    x-graph
-    x-office
-    x-web
+  x
+  x-code
+  x-games
+  x-graph
+  x-mail
+  x-office
+  x-scan
+  x-web
 }
 
 while getopts "adefmpstuvx" OPTION
-    do
-        case $OPTION in
-            a)
-                only-tty
-                with-x
-                ;;
-            d)
-                db
-                ;;
-            e)
-                emacs
-                ;;
-            f)
-                firm
-                ;;
-            m)
-                monitor
-                ;;
-            p)
-                privacy
-                ;;
-            s)
-                lamp
-                ;;
-            t)
-                only-tty
-                ;;
-            u)
-                u
-                ;;
-            v)
-                dev
-                ;;
-            x)
-                with-x
-                ;;
-            *)
-                exit
-                ;;
-        esac
-    done
+do
+  case $OPTION in
+    a)
+      only-tty
+      with-x
+      ;;
+    d)
+      db
+      ;;
+    e)
+      emacs
+      ;;
+    f)
+      firm
+      ;;
+    m)
+      monitor
+      ;;
+    p)
+      privacy
+      ;;
+    s)
+      lamp
+      ;;
+    t)
+      only-tty
+      ;;
+    u)
+      u
+      ;;
+    v)
+      dev
+      ;;
+    x)
+      with-x
+      ;;
+    *)
+      exit
+      ;;
+  esac
+done
 
+# vim:tabstop=4:softtabstop=2:shiftwidth=2:expandtab
