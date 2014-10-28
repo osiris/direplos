@@ -319,6 +319,7 @@ tty-lamp ()
 tty-laptop ()
 {
   i laptop-mode-tools
+  i pm-utils
   i powertop
 }
 
@@ -462,7 +463,8 @@ only-tty ()
 
 x-games ()
 {
-  golly
+  i armagetronad
+  i golly
 }
 
 x-scan ()
