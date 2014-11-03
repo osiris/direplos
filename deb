@@ -211,12 +211,13 @@ tty-tty ()
 tty-emacs ()
 {
   i emacs
+  i emacs-goodies-el
   i gnuplot-mode
+  i latex-beamer
   i vim
   i w3m-el
   i yaml-mode
   i yasnippet
-  i emacs-goodies-el
 }
 
 tty-org ()
@@ -370,6 +371,7 @@ x ()
   i lxappearance
   i lxrandr
   i osdsh
+  i pinpoint
   i rdesktop
   i rxvt-unicode
   i rxvt-unicode-256color
