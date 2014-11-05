@@ -208,12 +208,20 @@ tty-tty ()
   i gpm
 }
 
+tty-latex ()
+{
+  i latex-beamer
+  i texlive-extra-utils
+  i texlive-fonts-extra
+  i texlive-fonts-recommended
+  i texlive-latex-extra
+}
+
 tty-emacs ()
 {
   i emacs
   i emacs-goodies-el
   i gnuplot-mode
-  i latex-beamer
   i vim
   i w3m-el
   i yaml-mode
@@ -447,6 +455,7 @@ only-tty ()
   tty-graph
   tty-lamp
   tty-laptop
+  tty-latex
   tty-mail
   tty-media
   tty-monitor
@@ -508,6 +517,9 @@ do
       ;;
     f)
       tty-firm
+      ;;
+    l)
+      tty-latex
       ;;
     m)
       tty-monitor
