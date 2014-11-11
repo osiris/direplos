@@ -174,6 +174,8 @@ tty-network ()
   i tcpslice
   i tcpxtract
   i telnet
+  i tinc
+  i trickle
   i tshark
   i vncsnapshot
   i wicd-curses
@@ -502,7 +504,7 @@ with-x ()
   x-web
 }
 
-while getopts "adefmpstuvx" OPTION
+while getopts "adeflmnpstuvx" OPTION
 do
   case $OPTION in
     a)
@@ -523,6 +525,9 @@ do
       ;;
     m)
       tty-monitor
+      ;;
+    n)
+      tty-network
       ;;
     p)
       tty-privacy
