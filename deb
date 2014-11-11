@@ -118,10 +118,14 @@ tty-privacy ()
   i monkeysphere
   i pass
   i secure-delete
-  i sudo
   i tor
   i tor-socks
   i wipe
+}
+
+tty-sudo ()
+{
+  i sudo
 }
 
 tty-monitor ()
@@ -504,7 +508,7 @@ with-x ()
   x-web
 }
 
-while getopts "adeflmnpstuvx" OPTION
+while getopts "adeflmnopstuvx" OPTION
 do
   case $OPTION in
     a)
@@ -528,6 +532,9 @@ do
       ;;
     n)
       tty-network
+      ;;
+    o)
+      tty-sudo
       ;;
     p)
       tty-privacy
