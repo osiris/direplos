@@ -161,11 +161,16 @@ tty-network ()
 {
   i connect-proxy
   i corkscrew
+  i cryptcat
   i dnsutils
   i ethtool
   i ncftp
   i netcat
+  i netcat-openbsd
   i netcat-traditional
+  i netcat6
+  i netrw
+  i netsed
   i ngrep
   i openssh-server
   i pssh
