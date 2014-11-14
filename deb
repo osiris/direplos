@@ -105,6 +105,7 @@ tty-printer ()
   i foomatic-db
   i lpr
   i paps
+  i printer-driver-cups-pdf
 }
 
 tty-privacy ()
