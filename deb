@@ -369,6 +369,7 @@ tty-util ()
   i par
   i pv
   i toilet
+  i csvtool
 }
 
 tty-python ()
