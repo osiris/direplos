@@ -173,6 +173,7 @@ tty-network ()
   i netrw
   i netsed
   i ngrep
+  i nmap
   i openssh-server
   i pssh
   i redsocks
@@ -218,6 +219,7 @@ tty-tty ()
   i fbi
   i fbterm
   i gpm
+  i tree
 }
 
 tty-latex ()
