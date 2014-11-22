@@ -120,7 +120,7 @@ tty-privacy ()
   i pass
   i secure-delete
   i tor
-  i tor-socks
+  i torsocks
   i wipe
 }
 
