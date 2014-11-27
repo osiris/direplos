@@ -142,6 +142,8 @@ tty-monitor ()
   i htop
   i ifstat
   i iftop
+  i ioping
+  i iotop
   i iperf
   i iptraf
   i iwatch
@@ -152,6 +154,7 @@ tty-monitor ()
   i pktstat
   i slurm
   i speedometer
+  i sysstat
   i tcptrack
   i vnstat
   i wavemon
