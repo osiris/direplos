@@ -163,6 +163,7 @@ tty-monitor ()
 
 tty-network ()
 {
+  i autossh
   i connect-proxy
   i corkscrew
   i cryptcat
