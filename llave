@@ -26,9 +26,10 @@ then
   mount /dev/mapper/llave /mnt/llave
   cd $HOME
   mkdir -p .config
-  ln -f -s /mnt/llave/.gnupg ~/.gnupg
-  ln -f -s /mnt/llave/.imapfilter ~/.imapfilter
-  ln -f -s /mnt/llave/.password-store ~/.password-store
+  ln -f -s /mnt/llave/.gnupg .gnupg
+  ln -f -s /mnt/llave/.imapfilter .imapfilter
+  ln -f -s /mnt/llave/.password-store .password-store
+  ln -f -s /mnt/llave/.password-store-gcoop .password-store-gcoop
   ln -f -s /mnt/llave/.ssh ~/.ssh
 
   ln -f -s /mnt/llave/bin bin
