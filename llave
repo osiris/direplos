@@ -40,6 +40,7 @@ then
   ln -f -s /mnt/llave/media-bash-utils media-bash-utils
   ln -f -s /mnt/llave/org ~/org
   ln -f -s /mnt/llave/org-bash-utils org-bash-utils
+  ln -f -s /mnt/llave/pcap2dot pcap2dot
   ln -f -s /mnt/llave/plan-b plan-b
 
   ln -f -s /mnt/llave/config/awesome .config/awesome
