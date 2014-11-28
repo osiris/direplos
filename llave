@@ -1,0 +1,65 @@
+#!/bin/bash
+
+# This script comes with ABSOLUTELY NO WARRANTY, use at own risk
+# Copyright (C) 2014 Osiris Alejandro Gomez <osiux@osiux.com.ar>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+UUID='51baf9b5-0288-40cf-bf21-af80ef80be23'
+
+cryptsetup luksOpen /dev/disk/by-uuid/$UUID llave
+
+if [ -h /dev/mapper/llave ]
+then
+  mkdir -p /mnt/llave
+  mount /dev/mapper/llave /mnt/llave
+  cd $HOME
+  mkdir -p .config
+  ln -f -s /mnt/llave/.gnupg ~/.gnupg
+  ln -f -s /mnt/llave/.imapfilter ~/.imapfilter
+  ln -f -s /mnt/llave/.password-store ~/.password-store
+  ln -f -s /mnt/llave/.ssh ~/.ssh
+
+  ln -f -s /mnt/llave/bin bin
+  ln -f -s /mnt/llave/blog blog
+  ln -f -s /mnt/llave/config ~/config
+  ln -f -s /mnt/llave/direplos direplos
+  ln -f -s /mnt/llave/git-bash-utils git-bash-utils
+  ln -f -s /mnt/llave/hmtl html
+  ln -f -s /mnt/llave/media-bash-utils media-bash-utils
+  ln -f -s /mnt/llave/org ~/org
+  ln -f -s /mnt/llave/org-bash-utils org-bash-utils
+  ln -f -s /mnt/llave/plan-b plan-b
+
+  ln -f -s /mnt/llave/config/awesome .config/awesome
+  ln -f -s /mnt/llave/config/bash/bash_aliases .bash_aliases
+  ln -f -s /mnt/llave/config/bash/bash_profile .bash_profile
+  ln -f -s /mnt/llave/config/bash/bashrc .bashrc
+  ln -f -s /mnt/llave/config/conky/conkyrc .conkyrc
+  ln -f -s /mnt/llave/config/git/git-repos .git-repos
+  ln -f -s /mnt/llave/config/git/gitconfig .gitconfig
+  ln -f -s /mnt/llave/config/links2 .links2
+  ln -f -s /mnt/llave/config/mocp .moc
+  ln -f -s /mnt/llave/config/mutt/mailcap .mailcap
+  ln -f -s /mnt/llave/config/offlineimap/offlineimaprc .offlineimaprc
+  ln -f -s /mnt/llave/config/ssh/config .ssh/config
+  ln -f -s /mnt/llave/config/terminator .config/terminator
+  ln -f -s /mnt/llave/config/tmux/tmux.conf .tmux.conf
+  ln -f -s /mnt/llave/config/vimperator/vimperatorrc .vimperatorrc
+  ln -f -s /mnt/llave/config/vim .vim
+  ln -f -s /mnt/llave/config/vim/vimrc .vimrc
+  ln -f -s /mnt/llave/config/x/xinitrc .xinitrc
+  ln -f -s /mnt/llave/config/x/xmodmaprc .xmodmaprc
+fi
+
