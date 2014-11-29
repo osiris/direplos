@@ -345,6 +345,7 @@ tty-lamp ()
 
 tty-laptop ()
 {
+  i acpi
   i laptop-mode-tools
   i pm-utils
   i powertop
