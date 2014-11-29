@@ -74,7 +74,7 @@ tty-dev ()
   i libpcap-dev
 }
 
-firm ()
+tty-firm ()
 {
   i firmware-atheros
   i firmware-linux-free
