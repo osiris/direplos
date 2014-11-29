@@ -451,10 +451,11 @@ x-office ()
 x-graph ()
 {
   i geeqie
+  i gimp
+  i impressive
+  i inkscape
   i pqiv
   i qiv
-  i inkscape
-  i gimp
 }
 
 remove()

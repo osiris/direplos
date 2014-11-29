@@ -26,42 +26,42 @@ then
   mount /dev/mapper/llave /mnt/llave
   cd $HOME
   mkdir -p .config
-  ln -f -s /mnt/llave/.gnupg .gnupg
-  ln -f -s /mnt/llave/.imapfilter .imapfilter
-  ln -f -s /mnt/llave/.password-store .password-store
-  ln -f -s /mnt/llave/.password-store-gcoop .password-store-gcoop
-  ln -f -s /mnt/llave/.ssh ~/.ssh
+  ln -s /mnt/llave/.gnupg .gnupg
+  ln -s /mnt/llave/.imapfilter .imapfilter
+  ln -s /mnt/llave/.password-store .password-store
+  ln -s /mnt/llave/.password-store-gcoop .password-store-gcoop
+  ln -s /mnt/llave/.ssh ~/.ssh
 
-  ln -f -s /mnt/llave/bin bin
-  ln -f -s /mnt/llave/blog blog
-  ln -f -s /mnt/llave/config ~/config
-  ln -f -s /mnt/llave/direplos direplos
-  ln -f -s /mnt/llave/git-bash-utils git-bash-utils
-  ln -f -s /mnt/llave/hmtl html
-  ln -f -s /mnt/llave/media-bash-utils media-bash-utils
-  ln -f -s /mnt/llave/org ~/org
-  ln -f -s /mnt/llave/org-bash-utils org-bash-utils
-  ln -f -s /mnt/llave/pcap2dot pcap2dot
-  ln -f -s /mnt/llave/plan-b plan-b
+  ln -s /mnt/llave/bin bin
+  ln -s /mnt/llave/blog blog
+  ln -s /mnt/llave/config ~/config
+  ln -s /mnt/llave/direplos direplos
+  ln -s /mnt/llave/git-bash-utils git-bash-utils
+  ln -s /mnt/llave/hmtl html
+  ln -s /mnt/llave/media-bash-utils media-bash-utils
+  ln -s /mnt/llave/org ~/org
+  ln -s /mnt/llave/org-bash-utils org-bash-utils
+  ln -s /mnt/llave/pcap2dot pcap2dot
+  ln -s /mnt/llave/plan-b plan-b
 
-  ln -f -s /mnt/llave/config/awesome .config/awesome
-  ln -f -s /mnt/llave/config/bash/bash_aliases .bash_aliases
-  ln -f -s /mnt/llave/config/bash/bash_profile .bash_profile
-  ln -f -s /mnt/llave/config/bash/bashrc .bashrc
-  ln -f -s /mnt/llave/config/conky/conkyrc .conkyrc
-  ln -f -s /mnt/llave/config/git/git-repos .git-repos
-  ln -f -s /mnt/llave/config/git/gitconfig .gitconfig
-  ln -f -s /mnt/llave/config/links2 .links2
-  ln -f -s /mnt/llave/config/mocp .moc
-  ln -f -s /mnt/llave/config/mutt/mailcap .mailcap
-  ln -f -s /mnt/llave/config/offlineimap/offlineimaprc .offlineimaprc
-  ln -f -s /mnt/llave/config/ssh/config .ssh/config
-  ln -f -s /mnt/llave/config/terminator .config/terminator
-  ln -f -s /mnt/llave/config/tmux/tmux.conf .tmux.conf
-  ln -f -s /mnt/llave/config/vimperator/vimperatorrc .vimperatorrc
-  ln -f -s /mnt/llave/config/vim .vim
-  ln -f -s /mnt/llave/config/vim/vimrc .vimrc
-  ln -f -s /mnt/llave/config/x/xinitrc .xinitrc
-  ln -f -s /mnt/llave/config/x/xmodmaprc .xmodmaprc
+  ln -s /mnt/llave/config/awesome .config/awesome
+  ln -s /mnt/llave/config/bash/bash_aliases .bash_aliases
+  ln -s /mnt/llave/config/bash/bash_profile .bash_profile
+  ln -s /mnt/llave/config/bash/bashrc .bashrc
+  ln -s /mnt/llave/config/conky/conkyrc .conkyrc
+  ln -s /mnt/llave/config/git/git-repos .git-repos
+  ln -s /mnt/llave/config/git/gitconfig .gitconfig
+  ln -s /mnt/llave/config/links2 .links2
+  ln -s /mnt/llave/config/mocp .moc
+  ln -s /mnt/llave/config/mutt/mailcap .mailcap
+  ln -s /mnt/llave/config/offlineimap/offlineimaprc .offlineimaprc
+  ln -s /mnt/llave/config/ssh/config .ssh/config
+  ln -s /mnt/llave/config/terminator .config/terminator
+  ln -s /mnt/llave/config/tmux/tmux.conf .tmux.conf
+  ln -s /mnt/llave/config/vimperator/vimperatorrc .vimperatorrc
+  ln -s /mnt/llave/config/vim .vim
+  ln -s /mnt/llave/config/vim/vimrc .vimrc
+  ln -s /mnt/llave/config/x/xinitrc .xinitrc
+  ln -s /mnt/llave/config/x/xmodmaprc .xmodmaprc
 fi
 
