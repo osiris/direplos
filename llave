@@ -26,23 +26,23 @@ then
   mount /dev/mapper/llave /mnt/llave
   cd $HOME
   mkdir -p .config
-  ln -s /mnt/llave/.gnupg .gnupg
-  ln -s /mnt/llave/.imapfilter .imapfilter
-  ln -s /mnt/llave/.password-store .password-store
-  ln -s /mnt/llave/.password-store-gcoop .password-store-gcoop
-  ln -s /mnt/llave/.ssh ~/.ssh
+  ln -s /mnt/llave/.gnupg
+  ln -s /mnt/llave/.imapfilter
+  ln -s /mnt/llave/.password-store
+  ln -s /mnt/llave/.password-store-gcoop
+  ln -s /mnt/llave/.ssh
 
-  ln -s /mnt/llave/bin bin
-  ln -s /mnt/llave/blog blog
-  ln -s /mnt/llave/config ~/config
-  ln -s /mnt/llave/direplos direplos
-  ln -s /mnt/llave/git-bash-utils git-bash-utils
-  ln -s /mnt/llave/hmtl html
-  ln -s /mnt/llave/media-bash-utils media-bash-utils
-  ln -s /mnt/llave/org ~/org
-  ln -s /mnt/llave/org-bash-utils org-bash-utils
-  ln -s /mnt/llave/pcap2dot pcap2dot
-  ln -s /mnt/llave/plan-b plan-b
+  ln -s /mnt/llave/bin
+  ln -s /mnt/llave/blog
+  ln -s /mnt/llave/config
+  ln -s /mnt/llave/direplos
+  ln -s /mnt/llave/git-bash-utils
+  ln -s /mnt/llave/hmtl
+  ln -s /mnt/llave/media-bash-utils
+  ln -s /mnt/llave/org
+  ln -s /mnt/llave/org-bash-utils
+  ln -s /mnt/llave/pcap2dot
+  ln -s /mnt/llave/plan-b
 
   ln -s /mnt/llave/config/awesome .config/awesome
   ln -s /mnt/llave/config/bash/bash_aliases .bash_aliases
