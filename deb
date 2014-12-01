@@ -61,6 +61,15 @@ r ()
   apt-get remove $1
 }
 
+tty-bak ()
+{
+  i rdiff
+  i rdiff-backup
+  i rsync
+  i storebackup
+  i tardiff
+}
+
 tty-dev ()
 {
   i build-essential
@@ -467,6 +476,7 @@ remove()
 only-tty ()
 {
   remove
+  tty-bak
   tty-chat
   tty-code
   tty-disk
