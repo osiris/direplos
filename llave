@@ -24,6 +24,10 @@ if [ -h /dev/mapper/llave ]
 then
   mkdir -p /mnt/llave
   mount /dev/mapper/llave /mnt/llave
+fi
+
+if [ -d /mnt/llave ]
+then
   cd $HOME
   mkdir -p .config
   ln -s /mnt/llave/.gnupg
