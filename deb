@@ -61,6 +61,19 @@ r ()
   apt-get remove $1
 }
 
+tty-arduino ()
+{
+  i arduino-core
+  i arduino-mighty-1284p
+  i arduino-mk
+  i avr-libc
+  i picocom
+  i avrdude
+  i flashrom
+  i gcc-avr
+  i picocom
+}
+
 tty-bak ()
 {
   i rdiff
@@ -476,6 +489,7 @@ remove()
 only-tty ()
 {
   remove
+  tty-arduino
   tty-bak
   tty-chat
   tty-code
@@ -503,6 +517,11 @@ only-tty ()
   tty-web
 }
 
+x-arduino ()
+{
+  i arduino
+}
+
 x-games ()
 {
   i armagetronad
@@ -524,6 +543,7 @@ x-web ()
 with-x ()
 {
   x
+  x-arduino
   x-code
   x-games
   x-graph
