@@ -200,6 +200,7 @@ tty-network ()
   i netsed
   i ngrep
   i nmap
+  i mtr
   i openssh-server
   i pssh
   i redsocks
