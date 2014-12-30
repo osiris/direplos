@@ -143,6 +143,7 @@ tty-privacy ()
   i secure-delete
   i tor
   i torsocks
+  i unhide
   i wipe
 }
 
@@ -535,12 +536,6 @@ x-scan ()
   i simple-scan
 }
 
-x-web ()
-{
-  i iceweasel
-  i iceweasel-l10n-es-ar
-}
-
 with-x ()
 {
   x
@@ -554,7 +549,12 @@ with-x ()
   x-web
 }
 
-while getopts "adeflmnopstuvx" OPTION
+list-functions ()
+{
+  egrep "^[a-z-]+\ \(\)" "$0" | egrep "(x-|tty-)" | tr -d "()" | sort
+}
+
+while getopts "adefhlmnopstuvx" OPTION
 do
   case $OPTION in
     a)
@@ -569,6 +569,9 @@ do
       ;;
     f)
       tty-firm
+      ;;
+    h)
+      list-functions
       ;;
     l)
       tty-latex
