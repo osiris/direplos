@@ -133,6 +133,7 @@ tty-printer ()
 tty-privacy ()
 {
   i cryptsetup
+  i debian-keyring
   i ecryptfs-utils
   i encfs
   i gnupg
@@ -310,6 +311,7 @@ tty-disk ()
   i ncdu
   i parted
   i ranger
+  i realpath
   i renameutils
   i testdisk
 }
