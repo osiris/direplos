@@ -193,6 +193,8 @@ tty-network ()
   i cryptcat
   i dnsutils
   i ethtool
+  i mosh
+  i mtr
   i ncftp
   i netcat
   i netcat-openbsd
@@ -202,7 +204,6 @@ tty-network ()
   i netsed
   i ngrep
   i nmap
-  i mtr
   i openssh-server
   i pssh
   i redsocks
