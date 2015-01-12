@@ -155,6 +155,7 @@ tty-sudo ()
 
 tty-monitor ()
 {
+  i apachetop
   i arpwatch
   i atop
   i bmon
@@ -171,6 +172,7 @@ tty-monitor ()
   i iperf
   i iptraf
   i iwatch
+  i mytop
   i netdiag
   i nethogs
   i nfswatch
