@@ -139,6 +139,7 @@ tty-privacy ()
   i gnupg
   i gnupg-agent
   i keychain
+  i lynis
   i monkeysphere
   i pass
   i secure-delete
