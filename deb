@@ -283,6 +283,7 @@ tty-org ()
 
 tty-music ()
 {
+  i madplay
   i moc
 }
 
