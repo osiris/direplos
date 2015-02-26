@@ -138,6 +138,7 @@ tty-privacy ()
   i encfs
   i gnupg
   i gnupg-agent
+  i signing-party
   i keychain
   i lynis
   i monkeysphere
