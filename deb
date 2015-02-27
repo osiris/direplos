@@ -286,6 +286,7 @@ tty-music ()
 {
   i madplay
   i moc
+  i sox
 }
 
 tty-chat ()
