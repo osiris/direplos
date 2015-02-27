@@ -192,6 +192,7 @@ tty-monitor ()
 tty-network ()
 {
   i autossh
+  i cifs-utils 
   i connect-proxy
   i corkscrew
   i cryptcat
@@ -211,6 +212,7 @@ tty-network ()
   i openssh-server
   i pssh
   i redsocks
+  i smbclient
   i socat
   i sshfs
   i sshfs
