@@ -361,6 +361,7 @@ tty-lamp ()
   i libcurl3
   i mariadb-server
   i openssl
+  i php-cache-lite
   i php-db
   i php-mail
   i php-mail-mime
