@@ -132,6 +132,7 @@ tty-printer ()
 
 tty-privacy ()
 {
+  i acl
   i cryptsetup
   i debian-keyring
   i ecryptfs-utils
@@ -307,6 +308,7 @@ tty-code ()
   i python-pip
   i subversion
   i tig
+  i xsltproc
 }
 
 tty-disk ()
