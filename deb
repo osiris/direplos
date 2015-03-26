@@ -262,6 +262,8 @@ tty-tty ()
 tty-latex ()
 {
   i latex-beamer
+  i texi2html
+  i texinfo
   i texlive-extra-utils
   i texlive-fonts-extra
   i texlive-fonts-recommended
