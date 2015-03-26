@@ -283,8 +283,9 @@ tty-emacs ()
 
 tty-org ()
 {
-  i remind
   i libical-parser-perl
+  i pandoc
+  i remind
 }
 
 tty-music ()
