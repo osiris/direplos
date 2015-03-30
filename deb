@@ -76,11 +76,13 @@ tty-arduino ()
 
 tty-bak ()
 {
+  i lzop
   i rdiff
   i rdiff-backup
   i rsync
   i storebackup
   i tardiff
+  i xdelta3
 }
 
 tty-dev ()
