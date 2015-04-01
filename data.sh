@@ -25,7 +25,7 @@ then
   if [ -d /mnt/data/cifrado ]
   then
 
-  mount -t ecryptfs /mnt/data/ecryptfs/ /mnt/data/cifrado/
+  sudo mount -t ecryptfs /mnt/data/ecryptfs/ /mnt/data/cifrado/
 
   ln -f -s /mnt/data/cifrado/.ssh ~/.ssh
   ln -f -s /mnt/data/cifrado/.gnupg ~/.gnupg
