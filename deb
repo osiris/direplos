@@ -158,6 +158,11 @@ tty-sudo ()
   i sudo
 }
 
+tty-ldap ()
+{
+  i ldap-utils
+}
+
 tty-monitor ()
 {
   i apachetop
@@ -523,6 +528,7 @@ only-tty ()
   tty-lamp
   tty-laptop
   tty-latex
+  tty-ldap
   tty-mail
   tty-media
   tty-monitor
