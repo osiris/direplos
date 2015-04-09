@@ -200,7 +200,7 @@ tty-monitor ()
 tty-network ()
 {
   i autossh
-  i cifs-utils 
+  i cifs-utils
   i connect-proxy
   i corkscrew
   i cryptcat
@@ -495,7 +495,7 @@ x-code ()
 x-office ()
 {
   i libreoffice
-  i libreoffice-l10n-es 
+  i libreoffice-l10n-es
 }
 
 x-graph ()
@@ -515,6 +515,7 @@ remove()
 
 reprap()
 {
+  i cura-engine
   i openscad
   i png23d
   i repsnapper
