@@ -513,6 +513,16 @@ remove()
   r nano
 }
 
+reprap()
+{
+  i openscad
+  i png23d
+  i repsnapper
+  i sfact
+  i slic3r
+  i yagv
+}
+
 only-tty ()
 {
   remove
@@ -580,7 +590,7 @@ list-functions ()
   egrep "^[a-z-]+\ \(\)" "$0" | egrep "(x-|tty-)" | tr -d "()" | sort
 }
 
-while getopts "adefhlmnopstuvx" OPTION
+while getopts "adefhlmnoprstuvx" OPTION
 do
   case $OPTION in
     a)
@@ -614,6 +624,9 @@ do
     p)
       tty-privacy
       ;;
+    r)
+      reprap
+      ;;
     s)
       tty-lamp
       ;;
@@ -635,4 +648,4 @@ do
   esac
 done
 
-# vim:tabstop=4:softtabstop=2:shiftwidth=2:expandtab
+# vim:tabstop=2:softtabstop=2:shiftwidth=2:expandtab
