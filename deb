@@ -67,9 +67,9 @@ tty-arduino ()
   i arduino-mighty-1284p
   i arduino-mk
   i avr-libc
-  i picocom
   i avrdude
   i flashrom
+  i fritzing
   i gcc-avr
   i picocom
 }
