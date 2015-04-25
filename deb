@@ -460,6 +460,7 @@ x ()
   i wireshark
   i x11-utils
   i xcalib
+  i xclip
   i xdot
   i xfonts-efont-unicode
   i xinit
