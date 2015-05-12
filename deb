@@ -426,6 +426,7 @@ tty-util ()
   i pv
   i toilet
   i csvtool
+  i html2text
 }
 
 tty-python ()
@@ -466,6 +467,7 @@ x ()
   i xinit
   i xscreensaver
   i xsel
+  i xserver-xorg
   i zathura
 }
 
