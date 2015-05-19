@@ -90,7 +90,7 @@ tty-dev ()
   i build-essential
   i byacc
   i cmake
-  i ctags
+  i exuberant-ctags
   i flex
   i gcc
   i gengetopt
