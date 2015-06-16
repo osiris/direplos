@@ -341,6 +341,7 @@ tty-down ()
 {
   i axel
   i curl
+  i httpie
   i wget
 }
 
