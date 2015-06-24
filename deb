@@ -409,6 +409,7 @@ tty-mail ()
   i notmuch-mutt
   i notmuch-vim
   i offlineimap
+  i swaks
 }
 
 tty-media ()
