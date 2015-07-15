@@ -58,6 +58,10 @@ crontab ()
 {
 
 cat << EOF
+SHELL=/bin/bash
+LANG=es_AR.UTF-8
+LANGUAGE=es_AR.UTF-8
+LC_CTYPE="es_AR.UTF-8"
 0   * *     * * /bin/bash /bak/sql/mysql-bak weekday
 0   2 */7   * * /bin/bash /bak/sql/mysql-bak month
 0   3 */7   * * /bin/bash /bak/sql/mysql-bak now
@@ -97,9 +101,10 @@ last_day ()
   fi
 }
 
-WEEKDAY=$(/bin/date +%A)
+WEEKDAY=$(/bin/date +%a)
 NOW=$(/bin/date +%F_%H-%M)
-MONTH=$(/bin/date +%B)
+YEAR=$(/bin/data +%Y)
+MONTH=$(/bin/date +%b)
 
 case $1 in
   my_cnf)
@@ -121,7 +126,7 @@ case $1 in
     NAME=$WEEKDAY
     ;;
   month)
-    NAME=$MONTH
+    NAME=$YEAR-$MONTH
     ;;
   last)
     last_day
