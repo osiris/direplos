@@ -16,10 +16,22 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+USER='backuprsync'
+BIN='/home/'$USR'/mysql-bak'
+
+DIR='/backup/sql'
+LOG=$DIR'/mysql-backup.log'
+ERR=$DIR'/mysql-error.log'
+
+MYSQL='/usr/bin/mysql'
+DUMP='/usr/bin/mysqldump'
+GZIP='/bin/gzip'
+MD5='/usr/bin/md5sum'
+
 create_user ()
 {
 cat << EOF
- CREATE USER backuprsync;
+ CREATE USER $USER;
  GRANT
  FILE,
  LOCK TABLES,
@@ -29,25 +41,28 @@ cat << EOF
  SHOW VIEW,
  SUPER
  ON *.*
- TO 'backuprsync'@'localhost';
- SET PASSWORD FOR 'backuprsync'@'localhost'=PASSWORD('12345678');
+ TO '$USER'@'localhost';
+ SET PASSWORD FOR '$USER'@'localhost'=PASSWORD('12345678');
  FLUSH PRIVILEGES;
 EOF
+}
+
+chmod ()
+{
+  chmod 400 /home/$USER/.my.cnf
 }
 
 my_cnf ()
 {
 
-# chmod 400 /home/backuprsync/.my.cnf
-
 cat << EOF
 
 [mysqldump]
-user=backuprsync
+user=$USER
 password=12345678
 
 [client]
-user=backuprsync
+user=$USER
 password=12345678
 
 EOF
@@ -62,24 +77,13 @@ SHELL=/bin/bash
 LANG=es_AR.UTF-8
 LANGUAGE=es_AR.UTF-8
 LC_CTYPE="es_AR.UTF-8"
-0   * *     * * /bin/bash /bak/sql/mysql-bak weekday
-0   2 */7   * * /bin/bash /bak/sql/mysql-bak month
-0   3 */7   * * /bin/bash /bak/sql/mysql-bak now
-50 23 28-31 * * /bin/bash /bak/sql/mysql-bak last
+0   * *     * * /bin/bash $BIN weekday
+0   2 */7   * * /bin/bash $BIN month
+0   3 */7   * * /bin/bash $BIN now
+50 23 28-31 * * /bin/bash $BIN last
 EOF
 
 }
-
-LOG='/bak/sql/backup.log'
-ERR='/bak/sql/error.log'
-DIR='/bak/sql'
-
-MYSQL='/usr/bin/mysql'
-DUMP='/usr/bin/mysqldump'
-GZIP='/bin/gzip'
-MD5='/usr/bin/md5sum'
-
-USER=backuprsync
 
 OPTIONS=$(cat << EOF
  --add-drop-database
@@ -97,13 +101,13 @@ last_day ()
 {
   if [ $(/bin/date -d +1day +%d) -eq 1 ]
   then
-      /bin/bash /bak/sql/mysql-bak month
+      /bin/bash $BIN month
   fi
 }
 
 WEEKDAY=$(/bin/date +%a)
 NOW=$(/bin/date +%F_%H-%M)
-YEAR=$(/bin/data +%Y)
+YEAR=$(/bin/date +%Y)
 MONTH=$(/bin/date +%b)
 
 case $1 in
@@ -113,6 +117,10 @@ case $1 in
     ;;
   create_user)
     create_user
+    exit
+    ;;
+  chmod)
+    chmod
     exit
     ;;
   crontab)
@@ -146,19 +154,36 @@ fi
 cd $DIR
 
 DATABASES=$(echo "SHOW DATABASES;" | $MYSQL --batch -u $USER -N)
-echo $? $NOW $DATABASES >>$LOG
 
 if [ -z "$DATABASES" ]
 then
-	echo 1 $NOW "ERROR NO DATABASES!" >>$LOG
+    echo 1 $NOW "ERROR NO DATABASES!" >>$LOG
     exit 1
 fi
 
+HOSTNAME=`hostname | cut -d. -f1`
+
+to_date ()
+{
+   date -d @"$1" "+%F %R"
+}
+
+to_hhmmss ()
+{
+    date -d "1970-01-01 $1 seconds" +%H:%M:%S
+}
+
 for DB in $DATABASES
 do
-	FILE=$DB-$NAME.sql.gz
-	echo 0 $NOW 'Start backup '$DB' -> '$FILE >>$LOG
-	$DUMP -u $USER $OPTIONS $DB | $GZIP -9 -c >$FILE 2>>$ERR
-	echo $? $NOW $($MD5 $FILE)>>$LOG
+    FILE=$HOSTNAME-$DB-$NAME.sql.gz
+    START=`date +%s`
+    $DUMP -u $USER $OPTIONS $DB | $GZIP -9 -c >$FILE 2>>$ERR
+    END=`date +%s`
+    TOTAL=`expr $END - $START`
+    SS=`to_date "$START"`
+    SE=`to_date "$END"`
+    ST=`to_hhmmss "$TOTAL"`
+    MD5_FILE=`$MD5 $FILE`
+    echo "$SS $SE $ST $MD5_FILE" >>$LOG
 done
 
