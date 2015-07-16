@@ -103,7 +103,7 @@ last_day ()
 {
   if [ $(/bin/date -d +1day +%d) -eq 1 ]
   then
-      /bin/bash $BIN month
+      /bin/bash "$BIN" month
   fi
 }
 
@@ -143,23 +143,23 @@ case $1 in
     exit
     ;;
   *)
-    echo 1 $NOW 'ERROR now, weekday, month' >>$LOG
+    echo 1 "$NOW" 'ERROR now, weekday, month' >>"$LOG"
     exit 1
     ;;
 esac
 
-if [ -d $DIR ]
+if [ -d "$DIR" ]
 then
-  mkdir -p $DIR
+  mkdir -p "$DIR"
 fi
 
-cd $DIR
+cd "$DIR"
 
-DATABASES=$(echo "SHOW DATABASES;" | $MYSQL --batch -u $USER -N)
+DATABASES=$(echo "SHOW DATABASES;" | "$MYSQL" --batch -u "$USER" -N)
 
 if [ -z "$DATABASES" ]
 then
-    echo 1 $NOW "ERROR NO DATABASES!" >>$LOG
+    echo 1 "$NOW ERROR NO DATABASES!" >>"$LOG"
     exit 1
 fi
 
@@ -175,15 +175,15 @@ to_hhmmss ()
 
 for DB in $DATABASES
 do
-    FILE=$HOSTNAME-$DB-$NAME.sql.gz
+    FILE="$HOSTNAME-$DB-$NAME".sql.gz
     START=`date +%s`
-    $DUMP -u $USER $OPTIONS $DB | $GZIP -9 -c >$FILE 2>>$ERR
+    $DUMP -u "$USER $OPTIONS $DB" | "$GZIP" -9 -c >"$FILE" 2>>"$ERR"
     END=`date +%s`
-    TOTAL=`expr $END - $START`
+    TOTAL=`expr "$END" - "$START"`
     SS=`to_date "$START"`
     SE=`to_date "$END"`
     ST=`to_hhmmss "$TOTAL"`
-    MD5_FILE=`$MD5 $FILE`
-    echo "$SS $SE $ST $MD5_FILE" >>$LOG
+    MD5_FILE=`$MD5 "$FILE"`
+    echo "$SS $SE $ST $MD5_FILE" >>"$LOG"
 done
 
