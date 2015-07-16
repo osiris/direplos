@@ -16,12 +16,14 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+HOSTNAME=`hostname | cut -d. -f1`
+
 USER='backuprsync'
 BIN='/home/'$USR'/mysql-bak'
 
 DIR='/backup/sql'
-LOG=$DIR'/mysql-backup.log'
-ERR=$DIR'/mysql-error.log'
+LOG=$DIR'/'$HOSTNAME'-mysql-backup.log'
+ERR=$DIR'/'$HOSTNAME'-mysql-error.log'
 
 MYSQL='/usr/bin/mysql'
 DUMP='/usr/bin/mysqldump'
@@ -160,8 +162,6 @@ then
     echo 1 $NOW "ERROR NO DATABASES!" >>$LOG
     exit 1
 fi
-
-HOSTNAME=`hostname | cut -d. -f1`
 
 to_date ()
 {
