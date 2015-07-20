@@ -1,0 +1,134 @@
+#!/bin/bash
+#
+# This script comes with ABSOLUTELY NO WARRANTY, use at own risk        
+# Copyright (C) 2015 Osiris Alejandro Gomez <osiris@gcoop.coop>        
+#                                                                       
+# This program is free software: you can redistribute it and/or modify  
+# it under the terms of the GNU General Public License as published by  
+# the Free Software Foundation, either version 3 of the License, or     
+# any later version.                                                    
+#                                                                       
+# This program is distributed in the hope that it will be useful,       
+# but WITHOUT ANY WARRANTY; without even the implied warranty of        
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU      
+# General Public License for more details.                              
+#                                                                       
+# You should have received a copy of the GNU General Public License     
+# along with this program. If not, see <http://www.gnu.org/licenses/>.  
+
+BAK_DAY=`date +%Y-%m-%d`
+BAK_DATE=`date +%Y-%m-%d-%H-%M`
+BAK_DIR=/backup
+BAK_DIR_LOG=${BAK_DIR}/log/${BAK_DAY}
+BAK_LOG="$BAK_DIR_LOG/backuprsync.log"
+BAK_USER=backuprsync
+CFG_HOSTS="/home/$BAK_USER/backup_hosts"
+VERBOSE=0
+
+to_date ()
+{
+   date -d @"$1" "+%F %R"
+}
+
+to_hhmmss ()
+{
+   date -d "1970-01-01 $1 seconds" +%H:%M:%S
+}
+
+exit_error()
+{
+  echo "ERROR $1"
+  exit 1
+}
+
+[[ ! -d "$CFG_HOSTS" ]] && echo "1 ERROR $CFG_HOSTS" && exit 1
+
+while getopts "co:v" OPTION
+do
+  case $OPTION in
+  c)
+    USE_CFG_HOSTS=1
+  ;;
+  o)
+    ONLY_HOST=$OPTARG
+  ;;
+  v)
+    VERBOSE=1
+  ;;
+  esac
+done
+
+cd $CFG_HOSTS
+
+if [ -z $ONLY_HOST ]
+then
+	HOSTS=`find -type f | cut -c 3- | egrep -v "^$"`
+	OK=`echo $?`
+	[[ $OK -eq 0 ]] || exit_error "$HOSTS"
+else
+	HOSTS=$ONLY_HOST
+fi
+
+TOTAL_HOSTS=`echo "$HOSTS" | wc -l`
+echo "total hosts: $TOTAL_HOSTS"
+
+echo $HOSTS | tr ' ' "\n" | while read HOST
+do
+  BAK_HOST=$HOST
+  echo "host: $BAK_HOST"
+  grep -wo "$BAK_HOST" /home/$BAK_USER/.ssh/config
+  OK=`echo $?`
+  echo $OK
+  [[ $OK -eq 0 ]] || exit_error "$BAK_HOST"
+
+  SSH="ssh $BAK_USER@$BAK_HOST"
+  # FIXME verify remote dir
+
+  BAK_DIR_HOST=$BAK_DIR/$BAK_HOST
+
+  # FIXME add parameter for bw_limit
+  RSYNC_LIMIT=3000
+
+  [[ ! -d $BAK_DIR_LOG ]] && mkdir $BAK_DIR_LOG
+  [[ ! -d $BAK_DIR_HOST ]] && exit_error "$BAK_DIR_HOST"
+
+  cd $BAK_DIR_HOST
+
+  # FIXME exclude BAK_HOST/HOST.exclude
+
+  grep -v "#" $CFG_HOSTS/$HOST | while read DIR
+  do
+    [[ $VERBOSE -eq 1 ]] && echo "remote directory: $DIR"
+
+    RDIR=`basename "$DIR"`
+    RBAK_LOG="$BAK_DIR_LOG/$BAK_HOST-$RDIR-$BAK_DATE.log"
+    RBIN="/usr/bin/rsync"
+    RLIMIT="--bwlimit=$RSYNC_LIMIT"
+    ROPTIONS="-az --numeric-ids"
+
+    [[ $VERBOSE -eq 1 ]] && ROPTIONS="$ROPTIONS -vP "
+
+    RLOG="--log-file=$RBAK_LOG"
+    RSUDO="--rsync-path='sudo rsync'"
+    RSYNC="$RBIN $RLIMIT $ROPTIONS $RLOG $RSUDO $BAK_USER@$BAK_HOST:"
+
+    [[ $VERBOSE -eq 1 ]] && echo "logfile: $RBAK_LOG"
+    [[ $VERBOSE -eq 1 ]] && echo "command: sudo ${RSYNC}/$DIR ."
+
+    START=`date +%s`
+    echo "sudo ${RSYNC}/$DIR ." | /bin/bash
+    END=`date +%s`
+    TOTAL=`expr "$END" - "$START"`
+
+    SS=`to_date "$START"`
+    SE=`to_date "$END"`
+    ST=`to_hhmmss "$TOTAL"`
+
+    BYTES=`egrep -o "[0-9]+ bytes  received [0-9]+ bytes" "$RBAK_LOG"`
+    SENT=`echo "$BYTES" | awk '{print $1}'`
+    RECEIVED=`echo "$BYTES" | awk '{print $4}'`
+
+    echo "$SS $SE $ST $SENT $RECEIVED $BAK_HOST:$DIR" >>"$BAK_LOG"
+  done
+done
+
