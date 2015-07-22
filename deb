@@ -424,13 +424,14 @@ tty-media ()
 
 tty-util ()
 {
+  i csvtool
+  i html2text
   i manpages-es
+  i moreutils
   i most
   i par
   i pv
   i toilet
-  i csvtool
-  i html2text
 }
 
 tty-python ()
