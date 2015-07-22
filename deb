@@ -139,14 +139,16 @@ tty-privacy ()
   i debian-keyring
   i ecryptfs-utils
   i encfs
+  i foremost
   i gnupg
   i gnupg-agent
-  i signing-party
   i keychain
   i lynis
   i monkeysphere
   i pass
+  i scalpel
   i secure-delete
+  i signing-party
   i tor
   i torsocks
   i unhide
