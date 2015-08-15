@@ -30,8 +30,9 @@ i ()
 
 a ()
 {
-  i xdebugtoolkit
   i doga
+  i krill
+  i xdebugtoolkit
 }
 
 while getopts "ui" OPTION
