@@ -27,7 +27,7 @@ ERR=$DIR'/'$HOSTNAME'-mysql-error.log'
 
 MYSQL='/usr/bin/mysql'
 DUMP='/usr/bin/mysqldump'
-GZIP='/bin/gzip'
+GZIP='/bin/gzip -9 -c'
 MD5='/usr/bin/md5sum'
 
 create_user ()
@@ -177,7 +177,8 @@ for DB in $DATABASES
 do
     FILE="$HOSTNAME-$DB-$NAME".sql.gz
     START=`date +%s`
-    $DUMP -u "$USER $OPTIONS $DB" | "$GZIP" -9 -c >"$FILE" 2>>"$ERR"
+    OPT=`echo "$OPTIONS" | tr "\n" " "`
+    $DUMP -u $USER $OPT $DB | $GZIP >$FILE 2>>$ERR
     END=`date +%s`
     TOTAL=`expr "$END" - "$START"`
     SS=`to_date "$START"`
