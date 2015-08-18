@@ -19,7 +19,7 @@
 HOSTNAME=`hostname | cut -d. -f1`
 
 USER='backuprsync'
-BIN='/home/'$USR'/mysql-bak'
+BIN='/home/'$USER'/mysql-bak'
 
 DIR='/backup/sql'
 LOG=$DIR'/'$HOSTNAME'-mysql-backup.log'
@@ -79,7 +79,7 @@ SHELL=/bin/bash
 LANG=es_AR.UTF-8
 LANGUAGE=es_AR.UTF-8
 LC_CTYPE="es_AR.UTF-8"
-0   * *     * * /bin/bash $BIN weekday
+0   1 *     * * /bin/bash $BIN weekday
 0   2 */7   * * /bin/bash $BIN month
 0   3 */7   * * /bin/bash $BIN now
 50 23 28-31 * * /bin/bash $BIN last
