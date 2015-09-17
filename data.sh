@@ -16,23 +16,35 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-mkdir -p /mnt/data/ecryptfs
-mkdir -p /mnt/data/cifrado
+CRYPT='/mnt/data/ecryptfs'
+NOCRYPT='/mnt/data/cifrado'
 
-if [ -d /mnt/data/ecryptfs ]
+for DIR in $CRYPT $NOCRYPT
+do
+    sudo mkdir -p $DIR
+    sudo chown $USER: $DIR
+    sudo chmod 700 $DIR
+done
+
+if [ -d $CRYPT ]
 then
 
-  if [ -d /mnt/data/cifrado ]
+  if [ -d $NOCRYPT ]
   then
 
-  sudo mount -t ecryptfs /mnt/data/ecryptfs/ /mnt/data/cifrado/
+    MOUNT=`mount | grep -o $CRYPT`
 
-  ln -f -s /mnt/data/cifrado/.ssh ~/.ssh
-  ln -f -s /mnt/data/cifrado/.gnupg ~/.gnupg
-  ln -f -s /mnt/data/cifrado/.imapfilter ~/.imapfilter
-  ln -f -s /mnt/data/cifrado/.password-store ~/.password-store
-  ln -f -s /mnt/data/cifrado/org ~/org
+    if [ -z "$MOUNT" ]
+    then
+        sudo mount -t ecryptfs $CRYPT $NOCRYPT
+    fi
+
+  for LINK in .ssh .gnupg .imapfilter .password-store org
+  do
+    [[ ! -L $NOCRYPT/$LINK ]] && ln -f -s $NOCRYPT/$LINK ~/$LINK
+  done
 
   fi
+
 fi
 
