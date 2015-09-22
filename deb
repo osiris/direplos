@@ -146,6 +146,7 @@ tty-privacy ()
   i lynis
   i monkeysphere
   i pass
+  i pinentry-curses
   i scalpel
   i secure-delete
   i signing-party
