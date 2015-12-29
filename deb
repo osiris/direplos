@@ -209,6 +209,7 @@ tty-network ()
   i cryptcat
   i dnsutils
   i ethtool
+  i ipcalc
   i mosh
   i mtr
   i ncftp
@@ -244,6 +245,7 @@ tty-web ()
   i elinks
   i links2
   i lynx
+  i urlscan
   i w3m
   i w3m-img
 }
@@ -446,6 +448,14 @@ tty-python ()
   i rst2pdf
 }
 
+tty-salt()
+{
+  i salt-master
+  i salt-minion
+  i salt-ssh
+  i salt-syndic
+}
+
 x ()
 {
   i awesome
@@ -563,6 +573,7 @@ only-tty ()
   tty-terminal
   tty-tty
   tty-util
+  tty-salt
   tty-web
 }
 

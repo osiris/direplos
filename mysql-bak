@@ -95,6 +95,7 @@ OPTIONS=$(cat << EOF
  --extended-insert
  --single-transaction
  --skip-events
+ --skip-dump-date
  -h localhost
 EOF
 )

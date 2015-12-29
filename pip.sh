@@ -35,7 +35,15 @@ a ()
   i xdebugtoolkit
 }
 
-while getopts "ui" OPTION
+o ()
+{
+  i python-novaclient
+  i python-glanceclient
+  i python-keystoneclient
+  i python-neutronclient
+}
+
+while getopts "uio" OPTION
 do
   case $OPTION in
     u)
@@ -43,6 +51,9 @@ do
       ;;
     i)
       a
+      ;;
+    o)
+      o
       ;;
     *)
       exit
