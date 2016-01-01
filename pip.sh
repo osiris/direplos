@@ -30,8 +30,10 @@ i ()
 
 a ()
 {
+  i diagram
   i doga
   i krill
+  i percol
   i xdebugtoolkit
 }
 

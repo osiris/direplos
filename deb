@@ -353,6 +353,7 @@ tty-down ()
 tty-editor ()
 {
   i ack-grep
+  i silversearcher-ag
   i ed
   tty-emacs
 }
