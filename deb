@@ -433,7 +433,7 @@ tty-util ()
   i html2text
   i inxi
   i manpages-es
-  i moreutils
+  i parallel
   i most
   i par
   i pv

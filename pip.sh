@@ -35,6 +35,7 @@ a ()
   i krill
   i percol
   i xdebugtoolkit
+  i mitmproxy
 }
 
 o ()
