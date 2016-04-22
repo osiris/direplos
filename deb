@@ -238,6 +238,7 @@ tty-network ()
   i tshark
   i vncsnapshot
   i wicd-curses
+  i libncurses5-dev
 }
 
 tty-web ()

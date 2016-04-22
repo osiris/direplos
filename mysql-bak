@@ -156,7 +156,9 @@ fi
 
 cd "$DIR"
 
-DATABASES=$(echo "SHOW DATABASES;" | "$MYSQL" --batch -u "$USER" -N)
+ALL_DATABASES=$(echo "SHOW DATABASES;" | "$MYSQL" --batch -u "$USER" -N)
+
+[[ -z "$2" ]] && DATABASES="$ALL_DATABASES" || DATABASES="$2"
 
 if [ -z "$DATABASES" ]
 then
