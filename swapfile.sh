@@ -10,5 +10,5 @@ swapon "$F"
 grep "$F" /etc/fstab
 OK=`echo $?`
 
-[[ "$OK" -eq 1 ]] && echo "$F none swap defaults 0 0" >/etc/fstab
+[[ "$OK" -eq 1 ]] && echo "$F none swap defaults 0 0" >>/etc/fstab
 

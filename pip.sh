@@ -36,6 +36,7 @@ a ()
   i percol
   i xdebugtoolkit
   i mitmproxy
+  i glances
 }
 
 o ()
