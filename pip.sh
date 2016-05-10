@@ -30,13 +30,14 @@ i ()
 
 a ()
 {
+  i chronos
   i diagram
   i doga
+  i glances
   i krill
+  i mitmproxy
   i percol
   i xdebugtoolkit
-  i mitmproxy
-  i glances
 }
 
 o ()
