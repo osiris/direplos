@@ -27,5 +27,5 @@ P=$(dd if=/dev/urandom bs=512 count=1 2>/dev/null | tr -d "[:cntrl:]")
 
 [[ -z "$P" ]] && exit 1
 
-openssl enc -aes-256-ctr -pass pass:"$P" -nosalt < /dev/zero | pv -perbs $S | dd of=/dev/$1 bs=2M
+openssl enc -aes-256-ctr -pass pass:"$P" -nosalt < /dev/zero | pv -perbs "$S" | dd of=/dev/"$1" bs=2M
 
