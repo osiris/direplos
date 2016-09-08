@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# This script comes with ABSOLUTELY NO WARRANTY, use at own risk
+# Copyright (C) 2016 Osiris Alejandro Gomez <osiux@osiux.com>
+#
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# any later version.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+# General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+[[ -z "$1" ]] && exit 1
+[[ -e "/dev/$1" ]] || exit 1
+
+S=$(grep -w "$1" /proc/partitions | awk '{print sprintf("%.0f",$3*1024)}')
+
+[[ -z "$S" ]] && exit 1
+
+P=$(dd if=/dev/urandom bs=512 count=1 2>/dev/null | tr -d "[:cntrl:]")
+
+[[ -z "$P" ]] && exit 1
+
+openssl enc -aes-256-ctr -pass pass:"$P" -nosalt < /dev/zero | pv -perbs $S | dd of=/dev/$1 bs=2M
+
