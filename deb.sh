@@ -90,12 +90,15 @@ tty-dev ()
   i build-essential
   i byacc
   i cmake
+  i expect
   i exuberant-ctags
   i flex
   i gcc
   i gengetopt
+  i html-xml-utils
   i libgmp3-dev
   i libpcap-dev
+  i uuid
 }
 
 tty-firm ()
@@ -118,9 +121,11 @@ tty-sysadmin ()
   i cron-apt
   i etckeeper
   i fail2ban
+  i grepcidr
   i logcheck
   i ntpdate
   i postfix
+  i rgx
 }
 
 tty-printer ()
@@ -192,12 +197,19 @@ tty-monitor ()
   i nload
   i pktstat
   i slurm
+  i smem
   i speedometer
   i sysstat
   i tcptrack
   i vnstat
   i wavemon
   i whowatch
+}
+
+x-network ()
+{
+  i zenmap
+  i etherape
 }
 
 tty-network ()
@@ -210,13 +222,15 @@ tty-network ()
   i dnsutils
   i ethtool
   i ipcalc
+  i lftp
+  i libncurses5-dev
   i mosh
   i mtr
   i ncftp
   i netcat
+  i netcat6
   i netcat-openbsd
   i netcat-traditional
-  i netcat6
   i netrw
   i netsed
   i ngrep
@@ -226,7 +240,7 @@ tty-network ()
   i redsocks
   i smbclient
   i socat
-  i sshfs
+  i spfquery
   i sshfs
   i tcpdump
   i tcpick
@@ -238,7 +252,6 @@ tty-network ()
   i tshark
   i vncsnapshot
   i wicd-curses
-  i libncurses5-dev
 }
 
 tty-web ()
@@ -257,6 +270,7 @@ tty-terminal ()
   i bash-completion
   i bash-doc
   i screen
+  i shellcheck
   i tmux
   i vlock
 }
@@ -305,6 +319,7 @@ tty-music ()
 {
   i madplay
   i moc
+  i mpgtx
   i sox
 }
 
@@ -317,6 +332,7 @@ tty-chat ()
 tty-code ()
 {
   i bzr
+  i dos2unix
   i git-core
   i mercurial
   i php5-cli
@@ -334,12 +350,15 @@ tty-disk ()
   i gddrescue
   i gdisk
   i gpart
+  i jmtpfs
   i mc
+  i mtp-tools
   i ncdu
   i parted
   i ranger
   i realpath
   i renameutils
+  i s3fs
   i testdisk
 }
 
@@ -411,21 +430,26 @@ tty-laptop ()
 tty-mail ()
 {
   i imapfilter
+  i mpack
   i mutt-patched
   i notmuch
   i notmuch-emacs
   i notmuch-mutt
   i notmuch-vim
   i offlineimap
+  i procmail
+  i ripmime
   i swaks
+  i tnef
 }
 
 tty-media ()
 {
+  i exiv2
   i jhead
+  i mkvtoolnix
   i mplayer
   i mplayer2
-  i mkvtoolnix
 }
 
 tty-util ()
@@ -434,11 +458,13 @@ tty-util ()
   i html2text
   i inxi
   i manpages-es
-  i parallel
   i most
   i par
+  i parallel
   i pv
+  i recode
   i toilet
+  i unrar-free
 }
 
 tty-python ()
@@ -464,6 +490,8 @@ x ()
   i awesome
   i bleachbit
   i conky
+  i dzen2
+  i filezilla
   i libnotify-bin
   i lxappearance
   i lxrandr
@@ -485,6 +513,7 @@ x ()
   i xdot
   i xfonts-efont-unicode
   i xinit
+  i xinput
   i xscreensaver
   i xsel
   i xserver-xorg
@@ -534,6 +563,14 @@ x-graph ()
 remove()
 {
   r nano
+  r python-samba
+  r samba
+  r samba-common
+  r samba-common-bin
+  r samba-dsdb-modules
+  r samba-libs:amd64
+  r samba-vfs-modules
+  r vlc-plugin-samba
 }
 
 reprap()
@@ -597,6 +634,11 @@ x-scan ()
   i simple-scan
 }
 
+x-util ()
+{
+  i dmenu
+}
+
 with-x ()
 {
   x
@@ -607,6 +649,7 @@ with-x ()
   x-mail
   x-office
   x-scan
+  x-util
   x-web
 }
 
