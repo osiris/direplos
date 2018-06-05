@@ -133,6 +133,7 @@ tty-printer ()
   i cups
   i foomatic-db
   i lpr
+  i a2ps
   i paps
   i printer-driver-cups-pdf
 }
@@ -143,6 +144,7 @@ tty-privacy ()
   i cryptsetup
   i debian-keyring
   i ecryptfs-utils
+  i dmtx-utils
   i encfs
   i foremost
   i gnupg
@@ -150,6 +152,7 @@ tty-privacy ()
   i keychain
   i lynis
   i monkeysphere
+  i paperkey
   i pass
   i pinentry-curses
   i scalpel
@@ -450,6 +453,7 @@ tty-media ()
   i mkvtoolnix
   i mplayer
   i mplayer2
+  i poc-streamer
 }
 
 tty-util ()
@@ -465,6 +469,7 @@ tty-util ()
   i recode
   i toilet
   i unrar-free
+  i ministat
 }
 
 tty-python ()
@@ -502,6 +507,7 @@ x ()
   i rxvt-unicode-256color
   i scrot
   i shutter
+  i spice-client-gtk
   i terminator
   i thunar
   i vlc

@@ -31,13 +31,16 @@ i ()
 a ()
 {
   i chronos
+  i colout
   i diagram
   i doga
   i glances
   i krill
   i mitmproxy
   i percol
+  i roamer
   i xdebugtoolkit
+  i yas3fs
 }
 
 o ()
