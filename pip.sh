@@ -28,6 +28,23 @@ i ()
   fi
 }
 
+i3 ()
+{
+  apt install python3-pip
+  pip3 install $1
+}
+
+ansible()
+{
+  i ansible==2.9.15
+  i ansible-tower-cli==3.3.9
+}
+
+a3()
+{
+  i3 pyradio
+}
+
 a ()
 {
   i chronos
@@ -38,9 +55,12 @@ a ()
   i krill
   i mitmproxy
   i percol
+  i pre-commit
   i roamer
   i xdebugtoolkit
   i yas3fs
+  i yq
+  i feedgen
 }
 
 o ()
