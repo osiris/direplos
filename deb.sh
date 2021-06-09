@@ -61,6 +61,15 @@ r ()
   apt-get remove $1
 }
 
+tty-ledger ()
+{
+  i hledger
+  i hledger-ui
+  i ledger
+  i ledger-el
+  i vim-ledger
+}
+
 tty-arduino ()
 {
   i arduino-core
@@ -96,13 +105,17 @@ tty-dev ()
   i gcc
   i gengetopt
   i html-xml-utils
+  i crudini
+  i jq
   i libgmp3-dev
   i libpcap-dev
+  i linkchecker
   i uuid
 }
 
 tty-firm ()
 {
+  i lshw
   i firmware-atheros
   i firmware-linux-free
   i firmware-realtek
@@ -140,6 +153,7 @@ tty-printer ()
 
 tty-privacy ()
 {
+  i pwgen
   i acl
   i cryptsetup
   i debian-keyring
@@ -172,6 +186,7 @@ tty-sudo ()
 tty-ldap ()
 {
   i ldap-utils
+  i ldb-tools
 }
 
 tty-monitor ()
@@ -198,6 +213,7 @@ tty-monitor ()
   i nethogs
   i nfswatch
   i nload
+  i nmon
   i pktstat
   i slurm
   i smem
@@ -246,6 +262,7 @@ tty-network ()
   i spfquery
   i sshfs
   i tcpdump
+  i wakeonlan
   i tcpick
   i tcpslice
   i tcpxtract
@@ -276,6 +293,7 @@ tty-terminal ()
   i shellcheck
   i tmux
   i vlock
+  i exa
 }
 
 tty-tty ()
@@ -322,8 +340,10 @@ tty-music ()
 {
   i madplay
   i moc
+  i beets
   i mpgtx
   i sox
+  i pulsemixer
 }
 
 tty-chat ()
@@ -346,8 +366,26 @@ tty-code ()
   i xsltproc
 }
 
+tty-deb ()
+{
+
+URLS=$(cat << EOF
+https://github.com/muesli/duf/releases/download/v0.6.2/duf_0.6.2_linux_amd64.deb
+EOF
+)
+
+echo "$URLS" | while read -r URL
+do
+  DEB="$(echo "$URL" | rev | cut -d/ -f1 | rev)"
+  wget "$URL" && dpkg -i "$DEB"
+done
+
+}
+
 tty-disk ()
 {
+  i xfsdump
+  i xfsprogs
   i detox
   i fdupes
   i gddrescue
@@ -373,6 +411,11 @@ tty-down ()
   i wget
 }
 
+tty-torrent ()
+{
+  i rtorrent
+}
+
 tty-editor ()
 {
   i ack-grep
@@ -394,12 +437,14 @@ tty-graph ()
   i graphviz
   i imagemagick
   i jp2a
+  i plantuml
 }
 
 tty-lamp ()
 {
   i apache2-mpm-prefork
   i ca-certificates
+  i goaccess
   i libapache2-mod-php5
   i libcurl3
   i mariadb-server
@@ -428,6 +473,7 @@ tty-laptop ()
   i laptop-mode-tools
   i pm-utils
   i powertop
+  i i7z
 }
 
 tty-mail ()
@@ -436,6 +482,7 @@ tty-mail ()
   i mpack
   i mutt-patched
   i notmuch
+  i notmuch-addrlookup
   i notmuch-emacs
   i notmuch-mutt
   i notmuch-vim
@@ -459,17 +506,20 @@ tty-media ()
 tty-util ()
 {
   i csvtool
+  i fd-find
   i html2text
   i inxi
   i manpages-es
+  i ministat
+  i moreutils
   i most
   i par
   i parallel
+  i pcal
   i pv
   i recode
   i toilet
   i unrar-free
-  i ministat
 }
 
 tty-python ()
@@ -503,6 +553,9 @@ x ()
   i osdsh
   i pinpoint
   i rdesktop
+  i remmina
+  i remmina-plugin-rdp
+  i remmina-plugin-vnc
   i rxvt-unicode
   i rxvt-unicode-256color
   i scrot
@@ -512,6 +565,7 @@ x ()
   i thunar
   i vlc
   i vncviewer
+  i tigervnc-viewer
   i wireshark
   i x11-utils
   i xcalib
@@ -524,6 +578,10 @@ x ()
   i xsel
   i xserver-xorg
   i zathura
+  i mupdf
+  i xautomation
+  i xdotool
+  i wmctrl
 }
 
 x-mail ()
@@ -564,6 +622,12 @@ x-graph ()
   i inkscape
   i pqiv
   i qiv
+  i peek
+}
+
+x-dep ()
+{
+  i libgl1-mesa-glx
 }
 
 remove()
@@ -597,15 +661,20 @@ only-tty ()
   tty-bak
   tty-chat
   tty-code
+  tty-dev
+  tty-deb
   tty-disk
   tty-down
   tty-editor
+  tty-emacs
+  tty-firm
   tty-fonts
   tty-graph
   tty-lamp
   tty-laptop
   tty-latex
   tty-ldap
+  tty-ledger
   tty-mail
   tty-media
   tty-monitor
@@ -615,11 +684,13 @@ only-tty ()
   tty-printer
   tty-privacy
   tty-python
+  tty-salt
+  tty-sudo
   tty-sysadmin
   tty-terminal
+  tty-torrent
   tty-tty
   tty-util
-  tty-salt
   tty-web
 }
 
