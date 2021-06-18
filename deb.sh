@@ -357,6 +357,7 @@ tty-code ()
   i bzr
   i dos2unix
   i git-core
+  i git-crecord
   i mercurial
   i php5-cli
   i python
