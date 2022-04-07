@@ -61,6 +61,8 @@ a ()
   i yas3fs
   i yq
   i feedgen
+  i visidata
+  i pack-ama
 }
 
 o ()
