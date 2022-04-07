@@ -16,49 +16,166 @@
 # You should have received a copy of the GNU General Public License
 # along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-apt=$(grep ^deb /etc/apt/sources.list | head -1)
-debian_version=$(echo $apt | awk '{print $3}' | cut -d/ -f1)
-echo $debian_version
+apt="$(grep ^deb /etc/apt/sources.list | head -1)"
+debian_version="$(echo "$apt" | awk '{print $3}' | cut -d/ -f1)"
+echo "## $debian_version"
 
 declare -A v_emacs
 v_emacs[squeeze]='emacs23-nox'
 v_emacs[wheezy]='emacs23-nox'
 v_emacs[jessie]='emacs24-nox'
+v_emacs[buster]='emacs25-nox'
+v_emacs[bullseye]='emacs25-nox'
 v_emacs[sid]='emacs24-nox'
 v_emacs[precise]='emacs23-nox'
 v_emacs[trusty]='emacs24-nox'
+
+php_5 ()
+{
+  i libapache2-mod-php5
+  i php-cache-lite
+  i php-db
+  i php-mail
+  i php-mail-mime
+  i php-mdb2-driver-pgsql
+  i php-net-smtp
+  i php-net-socket
+  i php-net-url
+  i php-pear
+  i php-soap
+  i php5
+  i php5-cli
+  i php5-curl
+  i php5-imap
+  i php5-mysql
+  i php5-pgsql
+  i php5-sqlite
+}
+
+php_7 ()
+{
+  i libapache2-mod-php7.4
+  i php-cli
+  i php-db
+  i php-mail
+  i php-mail-mime
+  i php-mdb2-driver-pgsql
+  i php-net-smtp
+  i php-net-socket
+  i php-net-url
+  i php-pear
+  i php7.4
+  i php7.4-curl
+  i php7.4-imap
+  i php7.4-mysql
+  i php7.4-pgsql
+  i php7.4-soap
+  i php7.4-sqlite3
+}
+
+tty-php ()
+{
+  case "$1" in
+    buster|bullseye)
+      php_7
+      ;;
+    *)
+      php_5
+      ;;
+  esac
+}
+
+python2 ()
+{
+  i python2
+  i ipython
+  i python-apt
+  i python-docutils
+  i python-setuptools
+  i python-sphinx
+  i python-virtualenv
+}
+
+python3 ()
+{
+  i ipython3
+  i python3
+  i python3-apt
+  i python3-docutils
+  i python3-pip
+  i python3-setuptools
+  i python3-sphinx
+  i python3-virtualenv
+  r python3-samba
+}
+
+tty-python ()
+{
+  case "$1" in
+    bullseye)
+      python3
+      ;;
+    *)
+      python2
+      ;;
+  esac
+}
 
 u ()
 {
     apt-get update
 }
 
+a ()
+{
+  apt-get -qq -y install "$version" 2>>deb.err >>deb.log
+}
+
 i ()
 {
-  p=$(dpkg -l $1 | egrep ^ii | awk '{print $2}')
-  v=$(dpkg -l $1 | egrep ^ii | awk '{print $3}')
-  a=$(apt-cache show $1 | egrep "^Version" | head -1 | awk '{print $2}')
+  p="$(dpkg -l "$1" 2>>deb.err | grep -E ^ii | awk '{print $2}')"
+  v="$(dpkg -l "$1" 2>>deb.err | grep -E ^ii | awk '{print $3}')"
+  a="$(apt-cache show "$1" 2>>deb.err | grep -E "^Version" | head -1 | awk '{print $2}')"
 
-  if [ "$p" = "$1" ]
+  if [[ "$p" = "$1" ]]
   then
-    printf "%25s\t%-25s\t%-25s\n" $1 $v $a
+    printf "%25s\t%-25s\t%-25s\n" "$1" "$v" "$a"
   else
-    case $1 in
+    version=''
+    case "$1" in
       emacs)
         version=${v_emacs[$debian_version]}
+        ;;
+      php)
+        tty-php "$debian_version"
+        ;;
+      python)
+        tty-python "$debian_version"
         ;;
       *)
         version=$1
     esac
 
-    echo $version ...
-    apt-get -qq -y install $version
+    if [[ -n "$version" ]]
+    then
+      if ! a ;
+      then
+        printf "%25s\t%-25s\n" "$version" "NOT_FOUND"
+      fi
+    fi
+
   fi
 }
 
 r ()
 {
-  apt-get remove $1
+  apt-get remove -y "$1" 2>> deb.err >/dev/null
+}
+
+c ()
+{
+  apt-cache showpkg "$1" | grep -E "^Package: $1" >/dev/null
+  echo "$?"
 }
 
 tty-ledger ()
@@ -85,6 +202,7 @@ tty-arduino ()
 
 tty-bak ()
 {
+  i lsyncd
   i lzop
   i rdiff
   i rdiff-backup
@@ -115,14 +233,14 @@ tty-dev ()
 
 tty-firm ()
 {
-  i lshw
   i firmware-atheros
   i firmware-linux-free
   i firmware-realtek
+  i firmware-sof-signed
   i zd1211-firmware
 }
 
-db ()
+tty-db ()
 {
   i mariadb-client
   i postgresql-client
@@ -139,6 +257,7 @@ tty-sysadmin ()
   i ntpdate
   i postfix
   i rgx
+  i s-tui
 }
 
 tty-printer ()
@@ -231,8 +350,16 @@ x-network ()
   i etherape
 }
 
+tty-snmp ()
+{
+  i braa
+  i snmp
+  i snmp-mibs-downloader
+}
+
 tty-network ()
 {
+  i arp-scan
   i autossh
   i cifs-utils
   i connect-proxy
@@ -244,7 +371,7 @@ tty-network ()
   i lftp
   i libncurses5-dev
   i mosh
-  i mtr
+  i mtr-tiny
   i ncftp
   i netcat
   i netcat6
@@ -255,6 +382,8 @@ tty-network ()
   i ngrep
   i nmap
   i openssh-server
+  i ssh-audit
+  i openvpn
   i pssh
   i redsocks
   i smbclient
@@ -262,7 +391,6 @@ tty-network ()
   i spfquery
   i sshfs
   i tcpdump
-  i wakeonlan
   i tcpick
   i tcpslice
   i tcpxtract
@@ -271,6 +399,7 @@ tty-network ()
   i trickle
   i tshark
   i vncsnapshot
+  i wakeonlan
   i wicd-curses
 }
 
@@ -324,6 +453,7 @@ tty-emacs ()
   i emacs-goodies-el
   i gnuplot-mode
   i vim
+  i vifm
   i w3m-el
   i yaml-mode
   i yasnippet
@@ -331,39 +461,46 @@ tty-emacs ()
 
 tty-org ()
 {
+  i bsdmainutils
   i libical-parser-perl
   i pandoc
   i remind
+  i rst2pdf
 }
 
 tty-music ()
 {
+  i alsa-utils
+  i beets
+  i cava
   i madplay
   i moc
-  i beets
   i mpgtx
-  i sox
   i pulsemixer
+  i aumix
+  i sox
 }
 
 tty-chat ()
 {
   i finch
   i irssi
+  i profanity
 }
 
 tty-code ()
 {
   i bzr
+  i colordiff
   i dos2unix
-  i git-core
+  i git
   i git-crecord
+  i git-flow
   i mercurial
-  i php5-cli
   i python
-  i python-pip
   i subversion
   i tig
+  i giggle
   i xsltproc
 }
 
@@ -371,14 +508,22 @@ tty-deb ()
 {
 
 URLS=$(cat << EOF
-https://github.com/muesli/duf/releases/download/v0.6.2/duf_0.6.2_linux_amd64.deb
+bat  https://github.com/sharkdp/bat/releases/download/v0.18.2/bat_0.18.2_amd64.deb
+duf  https://github.com/muesli/duf/releases/download/v0.6.2/duf_0.6.2_linux_amd64.deb
+gh   https://github.com/cli/cli/releases/download/v1.11.0/gh_1.11.0_linux_amd64.deb
+lsd  https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb
 EOF
 )
 
-echo "$URLS" | while read -r URL
+echo "$URLS" | while read -r PKG URL
 do
+
+  [[ "$(c "$PKG")" -eq 0 ]] && continue
+
   DEB="$(echo "$URL" | rev | cut -d/ -f1 | rev)"
-  wget "$URL" && dpkg -i "$DEB"
+  [[ ! -e "$DEB" ]] && wget "$URL"
+  dpkg -i "$DEB"
+
 done
 
 }
@@ -428,6 +573,7 @@ tty-editor ()
 tty-fonts ()
 {
   i fonts-inconsolata
+  i fonts-ubuntu
   i unifont
 }
 
@@ -437,8 +583,13 @@ tty-graph ()
   i gnuplot
   i graphviz
   i imagemagick
+  i webp
+  i gocr
+  i pngcrush
+  i gromit-mpx
   i jp2a
   i plantuml
+  i gource
 }
 
 tty-lamp ()
@@ -446,26 +597,10 @@ tty-lamp ()
   i apache2-mpm-prefork
   i ca-certificates
   i goaccess
-  i libapache2-mod-php5
   i libcurl3
   i mariadb-server
   i openssl
-  i php-cache-lite
-  i php-db
-  i php-mail
-  i php-mail-mime
-  i php-mdb2-driver-pgsql
-  i php-net-smtp
-  i php-net-socket
-  i php-net-url
-  i php-pear
-  i php-soap
-  i php5
-  i php5-curl
-  i php5-imap
-  i php5-mysql
-  i php5-pgsql
-  i php5-sqlite
+  i php
 }
 
 tty-laptop ()
@@ -475,6 +610,7 @@ tty-laptop ()
   i pm-utils
   i powertop
   i i7z
+  i tlp
 }
 
 tty-mail ()
@@ -507,9 +643,11 @@ tty-media ()
 tty-util ()
 {
   i csvtool
+  i datamash
   i fd-find
   i html2text
   i inxi
+  i lshw
   i manpages-es
   i ministat
   i moreutils
@@ -521,19 +659,10 @@ tty-util ()
   i recode
   i toilet
   i unrar-free
+  i daemontools
 }
 
-tty-python ()
-{
-  i ipython
-  i python-docutils
-  i python-setuptools
-  i python-sphinx
-  i python-virtualenv
-  i rst2pdf
-}
-
-tty-salt()
+tty-salt ()
 {
   i salt-master
   i salt-minion
@@ -541,7 +670,7 @@ tty-salt()
   i salt-syndic
 }
 
-x ()
+x-awesome ()
 {
   i awesome
   i bleachbit
@@ -551,6 +680,8 @@ x ()
   i libnotify-bin
   i lxappearance
   i lxrandr
+  i macchanger
+  i mupdf
   i osdsh
   i pinpoint
   i rdesktop
@@ -564,25 +695,25 @@ x ()
   i spice-client-gtk
   i terminator
   i thunar
+  i tigervnc-viewer
   i vlc
   i vncviewer
-  i tigervnc-viewer
   i wireshark
+  i wmctrl
   i x11-utils
+  i xautomation
   i xcalib
   i xclip
   i xdot
+  i xdotool
   i xfonts-efont-unicode
   i xinit
   i xinput
   i xscreensaver
+  i xscreensaver-gl
   i xsel
   i xserver-xorg
   i zathura
-  i mupdf
-  i xautomation
-  i xdotool
-  i wmctrl
 }
 
 x-mail ()
@@ -617,13 +748,14 @@ x-office ()
 
 x-graph ()
 {
+  i flameshot
   i geeqie
   i gimp
   i impressive
   i inkscape
+  i peek
   i pqiv
   i qiv
-  i peek
 }
 
 x-dep ()
@@ -644,26 +776,36 @@ remove()
   r vlc-plugin-samba
 }
 
-reprap()
+x-reprap()
 {
-  i cura-engine
+  i cura
   i openscad
-  i png23d
-  i repsnapper
-  i sfact
   i slic3r
   i yagv
 }
 
+tty-reprap()
+{
+  i cura-engine
+  i png23d
+  i repsnapper
+  i sfact
+}
+
+tty-android()
+{
+  i scrcpy
+}
+
 only-tty ()
 {
-  remove
   tty-arduino
   tty-bak
   tty-chat
   tty-code
-  tty-dev
+  tty-db
   tty-deb
+  tty-dev
   tty-disk
   tty-down
   tty-editor
@@ -684,8 +826,7 @@ only-tty ()
   tty-org
   tty-printer
   tty-privacy
-  tty-python
-  tty-salt
+  tty-snmp
   tty-sudo
   tty-sysadmin
   tty-terminal
@@ -719,27 +860,33 @@ x-util ()
 
 with-x ()
 {
-  x
-  x-arduino
-  x-code
-  x-games
-  x-graph
-  x-mail
-  x-office
-  x-scan
-  x-util
-  x-web
+  x-awesome
+  x-arduino 
+  x-code 
+  x-dep 
+  x-games 
+  x-graph 
+  x-mail 
+  x-network 
+  x-office 
+  x-scan 
+  x-util 
+  x-web 
 }
 
 list-functions ()
 {
-  egrep "^[a-z-]+\ \(\)" "$0" | egrep "(x-|tty-)" | tr -d "()" | sort
+  grep -E "^[a-z-]+\ \(\)" "$0" \
+    | grep -E "(x-|tty-)"       \
+    | tr -d "()"                \
+    | sort
 }
 
 while getopts "adefhlmnoprstuvx" OPTION
 do
   case $OPTION in
     a)
+      remove
       only-tty
       with-x
       ;;
@@ -771,7 +918,8 @@ do
       tty-privacy
       ;;
     r)
-      reprap
+      tty-reprap
+      x-reprap
       ;;
     s)
       tty-lamp
