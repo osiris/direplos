@@ -47,22 +47,23 @@ a3()
 
 a ()
 {
+  i asciinema
   i chronos
   i colout
   i diagram
   i doga
+  i feedgen
   i glances
   i krill
   i mitmproxy
+  i pack-ama
   i percol
   i pre-commit
   i roamer
+  i visidata
   i xdebugtoolkit
   i yas3fs
   i yq
-  i feedgen
-  i visidata
-  i pack-ama
 }
 
 o ()
