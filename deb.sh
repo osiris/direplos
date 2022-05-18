@@ -231,6 +231,20 @@ tty-dev ()
   i uuid
 }
 
+tty-games ()
+{
+  i vitetris
+}
+
+tty-virt ()
+{
+  i cloud-image-utils
+  i ovmf
+  i qemu-efi
+  i qemu-utils
+  i virt-manger
+}
+
 tty-firm ()
 {
   i firmware-atheros
@@ -418,11 +432,12 @@ tty-terminal ()
   i bash
   i bash-completion
   i bash-doc
+  i exa
+  i lolcat
   i screen
   i shellcheck
   i tmux
   i vlock
-  i exa
 }
 
 tty-tty ()
@@ -508,10 +523,11 @@ tty-deb ()
 {
 
 URLS=$(cat << EOF
-bat  https://github.com/sharkdp/bat/releases/download/v0.18.2/bat_0.18.2_amd64.deb
-duf  https://github.com/muesli/duf/releases/download/v0.6.2/duf_0.6.2_linux_amd64.deb
-gh   https://github.com/cli/cli/releases/download/v1.11.0/gh_1.11.0_linux_amd64.deb
-lsd  https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb
+bat        https://github.com/sharkdp/bat/releases/download/v0.18.2/bat_0.18.2_amd64.deb
+duf        https://github.com/muesli/duf/releases/download/v0.6.2/duf_0.6.2_linux_amd64.deb
+gh         https://github.com/cli/cli/releases/download/v1.11.0/gh_1.11.0_linux_amd64.deb
+lsd        https://github.com/Peltoche/lsd/releases/download/0.20.1/lsd_0.20.1_amd64.deb
+hyperfine  https://github.com/sharkdp/hyperfine/releases/download/v1.13.0/hyperfine-musl_1.13.0_amd64.deb
 EOF
 )
 
@@ -812,6 +828,7 @@ only-tty ()
   tty-emacs
   tty-firm
   tty-fonts
+  tty-games
   tty-graph
   tty-lamp
   tty-laptop
@@ -861,17 +878,17 @@ x-util ()
 with-x ()
 {
   x-awesome
-  x-arduino 
-  x-code 
-  x-dep 
-  x-games 
-  x-graph 
-  x-mail 
-  x-network 
-  x-office 
-  x-scan 
-  x-util 
-  x-web 
+  x-arduino
+  x-code
+  x-dep
+  x-games
+  x-graph
+  x-mail
+  x-network
+  x-office
+  x-scan
+  x-util
+  x-web
 }
 
 list-functions ()
@@ -932,6 +949,7 @@ do
       ;;
     v)
       tty-dev
+      tty-code
       ;;
     x)
       with-x
