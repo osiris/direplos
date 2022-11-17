@@ -909,7 +909,7 @@ list-functions ()
     | sort
 }
 
-while getopts "adefhlmnoprstuvx" OPTION
+while getopts "adefhlmnoprstuvVx" OPTION
 do
   case $OPTION in
     a)
@@ -961,6 +961,9 @@ do
       tty-dev
       tty-code
       ;;
+    V)
+      tty-virt
+			;;
     x)
       with-x
       ;;
