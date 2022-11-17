@@ -670,6 +670,7 @@ tty-util ()
 {
   i csvtool
   i datamash
+  i debian-goodies
   i fd-find
   i html2text
   i inxi
@@ -686,6 +687,7 @@ tty-util ()
   i toilet
   i unrar-free
   i daemontools
+  i zstd
 }
 
 tty-salt ()
