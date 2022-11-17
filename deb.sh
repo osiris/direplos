@@ -239,10 +239,20 @@ tty-games ()
 tty-virt ()
 {
   i cloud-image-utils
+  i ipxe-qemu
+  i libvirt-clients
+  i libvirt-daemon
   i ovmf
+  i python3-libvirt
   i qemu-efi
+  i qemu-efi-aarch64
+  i qemu-efi-arm
+  i qemu-system-arm
+  i qemu-system-common
+  i qemu-system-data
+  i qemu-system-x86
   i qemu-utils
-  i virt-manger
+  i virt-manager
 }
 
 tty-firm ()
